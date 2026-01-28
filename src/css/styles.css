@@ -16,3 +16,15 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+@import url('./hero.css');
+@import url('./weekly-trends.css');
+@import url('./upcoming.css');
+@import url('./catalog.css');
+@import url('./pagination.css');
+@import url('./library.css');
+@import url('./modal.css');
+/* modal styles will be added */
+/* extra*/
+@import url('./badges.css');
+@import url('./back-link.css');
+@import url('./vite-promo.css');
