@@ -1,27 +1,34 @@
 // CSS
-import './css/styles.css';
-import './css/header.css';
+import '../css/styles.css';
+import '../css/header.css';
+import '../css/weekly-trends.css';
 
-// Header fonksiyonu
-import { initHeader } from './js/header.js';
+// Header
+import { initHeader } from './header';
 
-// API
-import './js/api/movies-api.js';
+// Hero
+import './hero';
+import './hero-tmdb';
 
-console.log('Cinemania Projesi Aktif!');
+// Sections
+import './weekly-trends';
+import './upcoming-this-month';
 
-async function injectPartial(selector, url) {
-  const container = document.querySelector(selector);
-  if (!container) return;
+// Modals
+import './modal';
+import './pop-up-movie-card';
+import './pop-up-trailer-card';
 
-  const res = await fetch(url);
-  const html = await res.text();
-  container.innerHTML = html;
-}
+// Library
+import './my-library';
+import './my-library-hero';
 
-document.addEventListener('DOMContentLoaded', async () => {
-  await injectPartial('#header', './partials/header.html');
+// API (side-effect)
+import './api/movies-api';
+
+console.log('🎬 Cinemania Projesi Aktif');
+
+// Header init (DOM zaten var olduğu için)
+document.addEventListener('DOMContentLoaded', () => {
   initHeader();
-  await injectPartial('#main-content', './partials/hero.html');
-  await injectPartial('#footer', './partials/footer.html');
 });
