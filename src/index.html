@@ -1,17 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinemania Movie Project</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
+
   <body>
-    <load src="./partials/header.html" />
+    <!-- Header buraya JS ile gelecek -->
+    <div id="header"></div>
 
-    <main></main>
+    <main id="main-content"></main>
 
-    <load src="./partials/footer.html" />
+    <!-- Footer buraya JS ile gelecek -->
+    <div id="footer"></div>
+
+    <!-- SCRIPT MUTLAKA BODY İÇİNDE -->
+    <script type="module" src="./main.js"></script>
   </body>
-  <script type="module" src="./main.js"></script>
 </html>

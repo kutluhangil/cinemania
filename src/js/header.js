@@ -1,9 +1,10 @@
-import { initHeader } from './js/header.js';
+
 
 // Sayfa yüklendiğinde header fonksiyonunu çalıştır
-document.addEventListener('DOMContentLoaded', () => {
-    initHeader();
-});
+//document.addEventListener('DOMContentLoaded', () => {
+  //  initHeader();
+
+//});
 
 
 
