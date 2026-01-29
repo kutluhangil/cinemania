@@ -1,0 +1,92 @@
+/* Temel Stiller */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.see-all {
+    color: #ff6b00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Grid Sistemi */
+.movie-grid {
+    display: grid;
+    gap: 20px;
+    /* Mobil: 1 Kolon */
+    grid-template-columns: repeat(1, 1fr);
+}
+
+/* Tablet: 2 Kolon */
+@media (min-width: 600px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* PC: 3 Kolon (Görseldeki gibi) */
+@media (min-width: 1024px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Kart Tasarımı */
+.movie-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.02);
+}
+
+.movie-card img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 15px 0;
+}
+
+.movie-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 5px 0;
+}
+
+.movie-meta {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.stars {
+    color: #ff6b00;
+    margin-top: 5px;
+}
