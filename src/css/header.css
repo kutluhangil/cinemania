@@ -1,6 +1,12 @@
 /* =========================
-   HEADER (mobile-first)
+   HEADER (Mobile-First)
 ========================= */
+
+:root {
+  --primary-orange: #f87719;
+  --text-gray: #b7b7b7;
+  --transition: 0.3s ease-in-out;
+}
 
 .header {
   position: absolute;
@@ -8,43 +14,56 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  padding: 12px 0;
-  background-color: transparent;
+  background: #000000;
+  color: #ffffff;
 }
 
 .header-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
-
+  padding: 8px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: space-between; /* Sol-Orta-Sağ dengesi */
+  position: relative;
+  height: 48px;
 }
 
-/* Logo */
+/* --- LOGO & MENU TRIGGER --- */
 .header-logo {
   display: flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  cursor: pointer; /* Mobilde popcorn bir buton gibi davranır */
+  z-index: 10;
 }
 
 .header-logo-img {
   width: 28px;
   height: 28px;
-  display: block;
 }
 
 .header-logo-text {
+  display: none; /* Mobilde gizli */
   font-weight: 600;
   font-size: 18px;
-  line-height: 1.1;
-  color: var(--text-color);
+  color: #ffffff;
 }
 
-/* Desktop navigation (hidden on mobile) */
+/* --- MOBİL BAŞLIK (MENU) --- */
+.header-mobile-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--text-gray);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* --- NAVİGASYON (Masaüstü için, mobilde gizli) --- */
 .header-nav {
   display: none;
 }
@@ -52,7 +71,7 @@
 .header-nav-list {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -61,72 +80,54 @@
 .header-nav-link {
   text-decoration: none;
   font-size: 14px;
-  color: var(--nav-link-color);
+  color: var(--text-gray);
   transition: color var(--transition);
 }
 
-.header-nav-link.is-active {
+.header-nav-link:hover,
+.header-nav-link.active {
   color: var(--primary-orange);
 }
 
-/* Right actions */
+/* --- TEMA TOGGLE & ACTIONS --- */
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  z-index: 10;
 }
 
-/* Burger (mobile) */
-.burger-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 40px;
-  padding: 0;
-
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.burger-btn svg {
-  width: 24px;
-  height: 24px;
-}
-
-/* Theme toggle */
 .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 52px;
-  height: 28px;
-
+  width: 44px;
+  height: 20px;
+  padding: 2px 6px;
   border: none;
-  border-radius: 999px;
+  border-radius: 100px;
   background-color: var(--primary-orange);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.theme-toggle svg {
-  width: 18px;
-  height: 18px;
+.theme-toggle img {
+  width: 12px;
+  height: 12px;
+}
+
+/* Burger buton (Figma'da olmadığı için mobilde gizledim) */
+.burger-btn {
+  display: none;
 }
 
 /* =========================
-   MOBILE MENU (drawer)
+   MOBILE MENU (Drawer)
 ========================= */
 
 .mobile-menu {
   position: fixed;
   inset: 0;
   z-index: 200;
-
-  background-color: rgba(0, 0, 0, 0.45);
-
+  background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition);
@@ -134,12 +135,10 @@
 
 .mobile-menu-panel {
   height: 100%;
-  width: 80vw;
-  max-width: 320px;
-
-  padding: 24px 20px;
-  background-color: #ffffff;
-
+  width: 70%;
+  max-width: 300px;
+  padding: 40px 20px;
+  background-color: #111111; /* Figma'daki koyu tema */
   transform: translateX(-100%);
   transition: transform var(--transition);
 }
@@ -154,42 +153,55 @@
 }
 
 .mobile-menu-list {
-  margin: 40px 0 0;
+  margin-top: 50px;
   padding: 0;
   list-style: none;
-
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 25px;
 }
 
 .mobile-menu-link {
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  color: #111111;
+  color: #ffffff;
+}
+
+.mobile-menu-link.active {
+  color: var(--primary-orange);
 }
 
 /* =========================
-   BREAKPOINTS
+   TABLET & DESKTOP (768px+)
 ========================= */
 
 @media (min-width: 768px) {
-  .burger-btn {
+  .header-container {
+    height: 60px;
+    padding: 0 32px;
+  }
+
+  /* 1. MENU yazısını gizle */
+  .header-mobile-title {
     display: none;
   }
 
+  /* 2. Logo metnini göster */
+  .header-logo-text {
+    display: inline;
+  }
+
+  /* 3. Navigasyonu ortaya al */
   .header-nav {
     display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .header-container {
-    padding: 0 32px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .header-container {
-    padding: 0 32px;
+  /* Popcorn artık menü açmaz, sadece linktir */
+  .header-logo {
+    cursor: pointer;
   }
 }
