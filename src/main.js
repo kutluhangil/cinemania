@@ -1,7 +1,7 @@
-import './css/header.css';
-import { initHeader } from './js/header';
+import './css/styles.css';
+//import { initHeader } from './js/header';
 
-document.addEventListener('DOMContentLoaded', () => {
-  initHeader();
-});
+//document.addEventListener('DOMContentLoaded', () => {
+//  initHeader();
+//});
 
