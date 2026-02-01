@@ -16,10 +16,22 @@ function showLoader() {
 function hideLoader() {
   myLibraryHeroLoader?.classList.add('is-hidden');
 }
+
 // Error popup
 function showErrorPopup() {
   const errorPopup = document.getElementById('error-popup');
   if (errorPopup) errorPopup.classList.add('show');
+}
+
+function closeErrorPopup() {
+  const errorPopup = document.getElementById('error-popup');
+  if (errorPopup) errorPopup.classList.remove('show');
+}
+
+// Tema 
+function loadSavedTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.body.classList.add(`${savedTheme}-theme`);
 }
 
 // My Library Hero
@@ -208,8 +220,19 @@ function displayDefaultMyLibraryHero() {
   `;
 }
 
-// Başlat
-document.addEventListener('DOMContentLoaded', initializeMyLibraryHero);
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+  loadSavedTheme();
+  initializeMyLibraryHero();
+  
+  document.querySelector('.my-library-error__close')?.addEventListener('click', closeErrorPopup);
+  
+  document.getElementById('error-popup')?.addEventListener('click', (e) => {
+    if (e.target.id === 'error-popup') {
+      closeErrorPopup();
+    }
+  });
+});
 
 // Export
 export { initializeMyLibraryHero };
