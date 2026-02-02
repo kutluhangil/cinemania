@@ -1,207 +1,228 @@
-/* =========================
-   HEADER (Mobile-First)
-========================= */
+/* ================================
+   HEADER – FIGMA UYUMLU (HEX)
+   Default: DARK
+================================ */
 
-:root {
-  --primary-orange: #f87719;
-  --text-gray: #b7b7b7;
-  --transition: 0.3s ease-in-out;
+/* THEME VARS */
+body.dark-theme {
+  --header-bg: transparent;
+  --text-color: #ffffff;
+  --nav-link-color: #b7b7b7;
+  --menu-bg: #171717;
 }
 
+body.light-theme {
+  --header-bg: #ffffff;
+  --text-color: #111111;
+  --nav-link-color: #595959;
+  --menu-bg: #ffffff;
+}
+
+/* BASE */
 .header {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  background-color: var(--header-bg);
   z-index: 100;
-  background: #000000;
-  color: #ffffff;
 }
 
-.header-container {
+.container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 8px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Sol-Orta-Sağ dengesi */
-  position: relative;
-  height: 48px;
+  padding: 0 20px;
 }
 
-/* --- LOGO & MENU TRIGGER --- */
-.header-logo {
+.header__container {
+  height: 48px; /* mobile */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* LOGO */
+.header__logo {
   display: flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  cursor: pointer; /* Mobilde popcorn bir buton gibi davranır */
-  z-index: 10;
 }
 
-.header-logo-img {
-  width: 28px;
-  height: 28px;
+.header__logo-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
-.header-logo-text {
-  display: none; /* Mobilde gizli */
-  font-weight: 600;
-  font-size: 18px;
-  color: #ffffff;
-}
-
-/* --- MOBİL BAŞLIK (MENU) --- */
-.header-mobile-title {
-  font-family: 'Roboto', sans-serif;
+.header__logo-text {
+  display: none; /* mobile hidden */
+  font-family: Roboto, sans-serif;
   font-weight: 500;
-  font-size: 14px;
-  text-transform: uppercase;
-  color: var(--text-gray);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--text-color);
 }
 
-/* --- NAVİGASYON (Masaüstü için, mobilde gizli) --- */
-.header-nav {
+/* NAV (tablet/desktop visible) */
+.header__nav {
   display: none;
 }
 
-.header-nav-list {
-  display: flex;
-  align-items: center;
-  gap: 32px;
+.header__nav-list {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  gap: 40px;
+  align-items: center;
 }
 
-.header-nav-link {
-  text-decoration: none;
+.header__link {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
   font-size: 14px;
-  color: var(--text-gray);
-  transition: color var(--transition);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--nav-link-color);
+  transition: color 0.3s ease;
 }
 
-.header-nav-link:hover,
-.header-nav-link.active {
-  color: var(--primary-orange);
+.header__link:hover,
+.header__link.active {
+  color: #f87719;
 }
 
-/* --- TEMA TOGGLE & ACTIONS --- */
-.header-actions {
+/* MENU BUTTON (mobile only) */
+.header__menu-btn {
+  border: none;
+  background: transparent;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--nav-link-color);
+  cursor: pointer;
+}
+
+/* THEME SWITCHER */
+.theme-switcher {
+  position: relative;
+  width: 44px;
+  height: 18px;
+  padding: 2px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #f87719 0%, #f84119 100%);
   display: flex;
   align-items: center;
-  z-index: 10;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
-.theme-toggle {
-  width: 44px;
-  height: 20px;
-  padding: 2px 6px;
-  border: none;
-  border-radius: 100px;
-  background-color: var(--primary-orange);
-  cursor: pointer;
+.theme-switcher__icons {
+  width: 100%;
+  height: 100%;
+  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.theme-toggle img {
-  width: 12px;
-  height: 12px;
+.theme-switcher__moon,
+.theme-switcher__sun {
+  width: 10px;
+  height: 10px;
+  display: block;
 }
 
-/* Burger buton (Figma'da olmadığı için mobilde gizledim) */
-.burger-btn {
+.theme-switcher__dot {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  transform: translateX(0);
+  transition: transform 0.35s ease;
+}
+
+body.light-theme .theme-switcher__dot {
+  transform: translateX(25px);
+}
+
+/* MOBILE MENU */
+.is-hidden {
   display: none;
 }
 
-/* =========================
-   MOBILE MENU (Drawer)
-========================= */
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 999;
+}
 
 .mobile-menu {
   position: fixed;
-  inset: 0;
-  z-index: 200;
-  background-color: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition);
-}
-
-.mobile-menu-panel {
+  top: 0;
+  left: 0;
+  width: 65%;
+  max-width: 260px;
   height: 100%;
-  width: 70%;
-  max-width: 300px;
-  padding: 40px 20px;
-  background-color: #111111; /* Figma'daki koyu tema */
-  transform: translateX(-100%);
-  transition: transform var(--transition);
+  background-color: var(--menu-bg);
+  z-index: 1000;
+  padding: 60px 20px 20px;
 }
 
-.mobile-menu.is-open {
-  opacity: 1;
-  pointer-events: auto;
+body.dark-theme .mobile-menu {
+  background-color: #171717;
 }
 
-.mobile-menu.is-open .mobile-menu-panel {
-  transform: translateX(0);
-}
-
-.mobile-menu-list {
-  margin-top: 50px;
-  padding: 0;
+.mobile-menu__list {
   list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 }
 
-.mobile-menu-link {
+.mobile-menu__link {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
   text-decoration: none;
-  font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
+  color: var(--nav-link-color);
 }
 
-.mobile-menu-link.active {
-  color: var(--primary-orange);
+.mobile-menu__link.active,
+.mobile-menu__link:hover {
+  color: #f87719;
 }
 
-/* =========================
-   TABLET & DESKTOP (768px+)
-========================= */
-
+/* TABLET */
 @media (min-width: 768px) {
-  .header-container {
+  .header__container {
     height: 60px;
-    padding: 0 32px;
   }
 
-  /* 1. MENU yazısını gizle */
-  .header-mobile-title {
-    display: none;
-  }
-
-  /* 2. Logo metnini göster */
-  .header-logo-text {
+  .header__logo-text {
     display: inline;
   }
 
-  /* 3. Navigasyonu ortaya al */
-  .header-nav {
+  .header__nav {
     display: block;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
-  /* Popcorn artık menü açmaz, sadece linktir */
-  .header-logo {
-    cursor: pointer;
+  .header__menu-btn {
+    display: none; /* tablet+ MENU yazısı yok */
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1280px) {
+  .container {
+    padding: 0 32px; /* figma padding */
   }
 }

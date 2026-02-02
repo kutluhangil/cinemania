@@ -1,83 +1,55 @@
 <header class="header">
-  <div class="header-container">
-    <!-- Logo (Home) -->
-    <a class="header-logo" href="./index.html" aria-label="Cinemania home">
-     
-        <img class="header-logo-img" 
-               src="/assets/popcorn.svg" 
-               alt="Cinemania" 
-               width="28" 
-               height="28"
+  <div class="container header__container">
+
+    <!-- SOL: BURGER (popcorn icon) -->
+    <button
+      class="header__burger"
+      type="button"
+      id="menu-btn"
+      aria-label="Open menu"
+    >
+      <img
+        class="header__logo-icon"
+        src="/assets/popcorn.svg"
+        alt=""
       />
-      <span class="header-logo-text">Cinemania</span>
+    </button>
+
+    <!-- LOGO TEXT (tablet & desktop) -->
+    <a class="header__brand" href="./index.html" aria-label="Cinemania home">
+      <span class="header__logo-text">Cinemania</span>
     </a>
-      <span class="header-mobile-title">MENU</span>
-    <!-- Desktop navigation -->
-    <nav class="header-nav" aria-label="Main navigation">
-      <ul class="header-nav-list">
-        <li>
-          <a class="header-nav-link" href="./index.html">Home</a>
-        </li>
-        <li>
-          <a class="header-nav-link" href="./page-2.html">Catalog</a>
-        </li>
-        <li>
-          <a class="header-nav-link" href="./page-3.html">My Library</a>
-        </li>
+
+    <!-- ORTA: desktop nav -->
+    <nav class="header__nav" aria-label="Main navigation">
+      <ul class="header__nav-list">
+        <li><a class="header__link" href="./index.html">Home</a></li>
+        <li><a class="header__link" href="./catalog.html">Catalog</a></li>
+        <li><a class="header__link" href="./library.html">My library</a></li>
       </ul>
     </nav>
 
-    <!-- Right actions -->
-    <div class="header-actions">
-      <!-- Theme toggle -->
-      <button
-        class="theme-toggle"
-        type="button"
-        aria-label="Toggle dark / light theme"
-      >
-      <img class="theme-icon"
-  src="/assets/sun.svg"
-  alt=""
-  width="10px"
-  height="10px"
-/>
-        <img
-    class="theme-icon"
-    src="/assets/moon.svg"
-    alt=""
-    width="13px"
-    height="13px"
-  />
-  
+    <!-- ORTA: mobile MENU text (SADECE YAZI) -->
+    <span class="header__menu-text">MENU</span>
 
+    <!-- SAĞ: theme switch -->
+    <button
+      class="theme-switcher"
+      type="button"
+      id="theme-switcher"
+      aria-label="Toggle theme"
+    >
+      <span class="theme-switcher__icons" aria-hidden="true">
+        <img class="theme-switcher__moon" src="/assets/moon.svg" alt="" />
+        <img class="theme-switcher__sun" src="/assets/sun.svg" alt="" />
+      </span>
+      <img
+        class="theme-switcher__dot"
+        src="/assets/theme-toggle-dot.svg"
+        alt=""
+        aria-hidden="true"
+      />
+    </button>
 
-      <!-- Burger button (mobile) -->
-      <button
-        class="burger-btn"
-        type="button"
-        aria-label="Open menu"
-      >
-        <svg width="24" height="24" aria-hidden="true">
-          <use href="/assets/burger.svg#icon-burger"></use>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu">
-    <div class="mobile-menu-panel">
-      <ul class="mobile-menu-list">
-        <li>
-          <a class="mobile-menu-link" href="./index.html">Home</a>
-        </li>
-        <li>
-          <a class="mobile-menu-link" href="./page-2.html">Catalog</a>
-        </li>
-        <li>
-          <a class="mobile-menu-link" href="./page-3.html">My Library</a>
-        </li>
-      </ul>
-    </div>
   </div>
 </header>

@@ -1,54 +1,78 @@
-// src/js/header.js
 export function initHeader() {
-  // --- 1. MOBİL MENÜ MANTIĞI (Popcorn İkonu ile) ---
-  // DÜZELTME: Seçiciyi (selector) kontrol et, popcorn ikonu .header-logo içindeyse bu kalabilir.
-  const logoBtn = document.querySelector('.header-logo'); 
-  const mobileMenu = document.querySelector('.mobile-menu');
+  // ACTIVE LINKS
+  const setActive = (selector) => {
+    const links = document.querySelectorAll(selector);
+    const currentPath = window.location.pathname;
 
-  if (logoBtn && mobileMenu) {
-    logoBtn.addEventListener('click', (e) => {
-      if (window.innerWidth < 768) {
-        e.preventDefault(); 
-        mobileMenu.classList.toggle('is-open'); // Menüyü aç/kapat
-      }
+    links.forEach((link) => {
+      try {
+        const linkPath = new URL(link.href).pathname;
+        link.classList.toggle('active', linkPath === currentPath);
+      } catch {}
     });
-
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target.classList.contains('mobile-menu-link') || e.target === mobileMenu) {
-        mobileMenu.classList.remove('is-open');
-      }
-    });
-  }
-
-  // --- 2. TEMA YÖNETİMİ (Dark/Light Mode) ---
-  const themeToggle = document.querySelector('.theme-toggle');
-  
-  // DÜZELTME: Tema değişiminde ikonun da değişmesi için görseli seçiyoruz.
-  // HTML tarafında bu img etiketine id="theme-icon" eklediğinden emin ol.
-  const themeIcon = document.querySelector('#theme-icon'); 
-
-  // YENİ: Temayı ve ikonları güncelleyen yardımcı fonksiyon
-  const updateThemeUI = (theme) => {
-    document.body.className = `${theme}-theme`;
-    
-    // DÜZELTME: Senin yenilediğin dosya isimlerini (sun.svg, moon.svg) burada kullanıyoruz.
-    // Vite kullandığın için path'i /assets/... şeklinde (public klasörünü baz alarak) yazıyoruz.
-    if (themeIcon) {
-      themeIcon.src = theme === 'light' ? '/assets/moon.svg' : '/assets/sun.svg';
-    }
   };
 
-  // Sayfa yüklendiğinde hafızadaki temayı uygula
-  const savedTheme = localStorage.getItem('theme') || 'dark'; // Varsayılan dark
-  updateThemeUI(savedTheme);
+  setActive('.header__link');
+  setActive('.mobile-menu__link');
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isLight = document.body.classList.contains('light-theme');
-      const newTheme = isLight ? 'dark' : 'light'; // Mevcut temanın tersini seç
+  // MOBILE MENU
+  const menuBtn = document.getElementById('burger-btn');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const menu = document.getElementById('mobile-menu');
 
-      updateThemeUI(newTheme);
-      localStorage.setItem('theme', newTheme); // Tercihi kaydet
+  const openMenu = () => {
+    backdrop.classList.remove('is-hidden');
+    menu.classList.remove('is-hidden');
+    requestAnimationFrame(() => {
+      menu.style.transform = 'translateX(0)';
+    });
+  };
+
+  const closeMenu = () => {
+    menu.style.transform = 'translateX(-105%)';
+    setTimeout(() => {
+      backdrop.classList.add('is-hidden');
+      menu.classList.add('is-hidden');
+    }, 250);
+  };
+
+  if (menuBtn && backdrop && menu) {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target.matches('a')) closeMenu();
     });
   }
+
+
+ // ---------- THEME (default: dark) ----------
+const switcher = document.getElementById('theme-switcher');
+const KEY = 'cinemania-theme';
+
+const applyTheme = (mode) => {
+  // mode: 'dark' | 'light'
+  document.body.classList.toggle('light-theme', mode === 'light');
+  document.body.classList.toggle('dark-theme', mode !== 'light');
+};
+
+// sayfa açılır açılmaz uygula (yoksa dark)
+applyTheme(localStorage.getItem(KEY) || 'dark');
+
+if (switcher) {
+  switcher.addEventListener('click', () => {
+    const isLight = document.body.classList.contains('light-theme');
+    const next = isLight ? 'dark' : 'light';
+    localStorage.setItem(KEY, next);
+    applyTheme(next);
+  });
+}
 }
