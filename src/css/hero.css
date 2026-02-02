@@ -68,15 +68,15 @@ body {
   width: 16px;
   height: 16px;
   display: inline-block;
-  background: url('/src/assets/star-icon.svg') no-repeat center / contain;
+  background: url('/assets/star-icon.svg') no-repeat center / contain;
 }
 
 .star-filled {
-  background: url('/src/assets/star-icon-filled.svg') no-repeat center / contain;
+  background: url('/assets/star-icon-filled.svg') no-repeat center / contain;
 }
 
 .star-empty {
-  background: url('/src/assets/star-icon.svg') no-repeat center / contain;
+  background: url('/assets/star-icon.svg') no-repeat center / contain;
 }
 
 #hero-description {

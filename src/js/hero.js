@@ -1,3 +1,4 @@
+import { API_KEY, BASE_URL } from './api/movies-api.js';
 import { createLoader } from './loader.js';
 import { getDailyTrending } from './api/movies-api.js';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/original';
