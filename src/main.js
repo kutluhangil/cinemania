@@ -16,4 +16,10 @@ import { startHeroApp } from './js/hero.js';
 document.addEventListener('DOMContentLoaded', () => {
   initCatalog();
 });
+
+import { initFooter } from './js/footer.js';
+document.addEventListener('DOMContentLoaded', () => {
+  initFooter();
+});
+
 startHeroApp();
