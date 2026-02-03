@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 // js/api/movies-api.js
 
 export const API_KEY = '6e2b9ceff6313b472d60eed2769db38a'; // API key anahtarım artık burada
 export const BASE_URL = 'https://api.themoviedb.org/3';
-=======
-// src/js/api/movies-api.js
-const API_KEY = '6e2b9ceff6313b472d60eed2769db38a'; // benim anahtar
-const BASE_URL = 'https://api.themoviedb.org/3';
->>>>>>> cdea60d8898fbe3e8c9788cb3f765b98741a4fe2
 
 /**
  * Haftalık trend olan filmleri getirir.
@@ -25,8 +19,8 @@ export async function getWeeklyTrending() {
     return [];
   }
 }
-<<<<<<< HEAD
-=======
+
+
 
 /**
  * Film adına göre arama yapar (Katalog sayfası için).
@@ -55,4 +49,4 @@ export async function getMovieDetails(movieId) {
     console.error("Detay Hatası:", error);
   }
 }
->>>>>>> cdea60d8898fbe3e8c9788cb3f765b98741a4fe2
+
