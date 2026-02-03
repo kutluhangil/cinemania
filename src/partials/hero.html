@@ -1,0 +1,39 @@
+<section id="hero" class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1 id="hero-title"></h1>
+    <div id="hero-rating" class="stars"></div>
+    <p id="hero-description"></p>
+
+    <div class="hero-buttons">
+      <button id="watch-trailer" class="btn btn-orange">Watch trailer</button>
+      <button id="more-details" class="btn btn-outline">More details</button>
+    </div>
+  </div>
+</section>
+
+<div id="error-popup" class="modal-hidden">
+  <div class="error-content">
+    <span class="close-btn">&times;</span>
+    <h2>OOPS...</h2>
+    <p>We are very sorry!</p>
+    <p>But we couldn't find the trailer.</p>
+    <img src="/src/assets/error-icon.png" alt="Error Icon" />
+  </div>
+</div>
+
+<div id="video-modal" class="modal-hidden">
+  <div class="video-content">
+    <span class="close-video">&times;</span>
+    <div class="iframe-container">
+      <iframe
+        id="trailer-video"
+        width="100%"
+        height="100%"
+        src=""
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>

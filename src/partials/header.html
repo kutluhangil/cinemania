@@ -1,81 +1,69 @@
 <header class="header">
-  <div class="header-container">
-    <!-- Logo (Home) -->
-    <a class="header-logo" href="./index.html" aria-label="Cinemania home">
-     
-        <img class="header-logo-img" 
-               src="/assets/popcorn.svg" 
-               alt="Cinemania" 
-               width="28" 
-               height="28"
-      />
-      <span class="header-logo-text">Cinemania</span>
-    </a>
-      <span class="header-mobile-title">MENU</span>
-    <!-- Desktop navigation -->
-    <nav class="header-nav" aria-label="Main navigation">
-      <ul class="header-nav-list">
-        <li>
-          <a class="header-nav-link" href="./index.html">Home</a>
-        </li>
-        <li>
-          <a class="header-nav-link" href="./page-2.html">Catalog</a>
-        </li>
-        <li>
-          <a class="header-nav-link" href="./page-3.html">My Library</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Right actions -->
-    <div class="header-actions">
-      <!-- Theme toggle -->
-      <button
-        class="theme-toggle"
-        type="button"
-        aria-label="Toggle dark / light theme"
-      >
-      <img class="theme-icon"
-  src="/assets/sun.svg"
-  alt=""
-  width="10px"
-  height="10px"
-/>
-        <img
-    class="theme-icon"
-    src="/assets/moon.svg"
-    alt=""
-    width="13px"
-    height="13px"
-  />
-  
-
-
-      <!-- Burger button (mobile) -->
-      <button
-        class="burger-btn"
-        type="button"
-        aria-label="Open menu"
-      >
-        <svg width="24" height="24" aria-hidden="true">
-          <use href="/assets/burger.svg#icon-burger"></use>
-        </svg>
+  <div class="container header-container">
+    <!-- LEFT -->
+    <div class="header-left">
+      <!-- Mobile: burger button (popcorn icon) -->
+      <button class="burger-btn" type="button" aria-label="Open menu">
+        <img class="header-popcorn-icon" src="/assets/popcorn.svg" alt="" />
       </button>
-    </div>
-  </div>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu">
-    <div class="mobile-menu-panel">
+      <!-- Tablet/Desktop: logo link (popcorn + text) -->
+      <a class="header-logo-link" href="./index.html" aria-label="Cinemania home">
+        <img class="header-popcorn-icon" src="/assets/popcorn.svg" alt="" />
+        <span class="header-logo-text">Cinemania</span>
+      </a>
+    </div>
+
+    <!-- CENTER -->
+    <div class="header-center">
+      <!-- Mobile title -->
+      <p class="header-mobile-title">MENU</p>
+
+      <!-- Tablet/Desktop navigation -->
+      <nav class="header-nav" aria-label="Main navigation">
+        <ul class="header-nav-list">
+          <li class="header-nav-item">
+            <a class="header-nav-link active" href="./index.html">HOME</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="./catalog.html">CATALOG</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link " href="./my-library.html">MY LIBRARY</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+   <!-- RIGHT -->
+<div class="header-right">
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <span class="theme-toggle-track" aria-hidden="true">
+      <!-- sol ikon -->
+      <img class="theme-toggle-icon moon" src="/assets/moon.svg" alt="" />
+
+      <!-- kayan nokta -->
+      <span class="theme-toggle-dot"></span>
+        
+
+      <!-- sağ ikon -->
+      <img class="theme-toggle-icon sun" src="/assets/sun.svg" alt="" />
+    </span>
+  </button>
+</div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-menu is-hidden" data-menu>
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
       <ul class="mobile-menu-list">
-        <li>
-          <a class="mobile-menu-link" href="./index.html">Home</a>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="./index.html">HOME</a>
         </li>
-        <li>
-          <a class="mobile-menu-link" href="./page-2.html">Catalog</a>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="./catalog.html">CATALOG</a>
         </li>
-        <li>
-          <a class="mobile-menu-link" href="./page-3.html">My Library</a>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="./my-library.html">MY LIBRARY</a>
         </li>
       </ul>
     </div>

@@ -1,0 +1,344 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #111; /* Sayfa yüklenirken beyaz parlamayı önlemek için */
+}
+
+.hero-section {
+  width: 100%;
+  min-height: 380px;
+  padding: 40px 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+/* Soldan sağa kararma efekti (Resim 1'deki gibi) */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.8) 20%,
+    transparent 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-left: 20px; /* Mobil uyumlu başlangıç boşluğu */
+}
+
+#hero-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.hero-content .app-loader {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.hero-content .app-loader__spinner {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+#hero-rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.star-item {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url('/assets/star-icon.svg') no-repeat center / contain;
+}
+
+.star-filled {
+  background: url('/assets/star-icon-filled.svg') no-repeat center / contain;
+}
+
+.star-empty {
+  background: url('/assets/star-icon.svg') no-repeat center / contain;
+}
+
+#hero-description {
+  width: 100%;
+  max-width: 260px;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.hero-default .btn-orange {
+  margin-top: 10px;
+}
+
+.hero-default #hero-title {
+  text-transform: none;
+}
+
+.btn-orange,
+.btn-outline {
+  width: 117px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 74px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.btn-orange {
+  background: linear-gradient(160deg, #ffc226 0%, #f84119 100%);
+  border: none;
+  color: #111111;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.btn-orange:focus-visible,
+.btn-outline:focus-visible {
+  outline: none;
+}
+
+/* --- Error Pop-up (Resim 2 tasarımı) --- */
+.modal-hidden {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-hidden.show {
+  display: flex !important;
+}
+
+.error-content {
+  background: #111;
+  padding: 40px 20px 40px 33px;
+  border-radius: 16px;
+  text-align: left;
+  position: relative;
+  border: 1px solid #333;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.error-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.error-content p {
+  font-size: 14px;
+  color: #ccc;
+  margin: 5px 0;
+}
+
+.error-content img {
+  align-self: center;
+  width: 159px;
+  height: 153px;
+}
+
+/* Video Modal Özel Stilleri */
+.video-content {
+  width: 90%;
+  max-width: 900px;
+  margin: auto; /* Ortalamayı garanti eder */
+  background: #000;
+  position: relative;
+}
+
+.iframe-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.close-video {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    width: 100%;
+    height: 432px;
+  }
+
+  #hero-title {
+    font-size: 44px;
+    font-weight: bold;
+  }
+
+  .hero-content .app-loader {
+    font-size: 44px;
+  }
+
+  .hero-content .app-loader__spinner {
+    width: 44px;
+    height: 44px;
+    border-width: 4px;
+  }
+
+  .star-item {
+    width: 20px;
+    height: 20px;
+  }
+
+  #hero-description {
+    width: 254px;
+    height: 49px;
+    font-size: 14px;
+    margin-bottom: 77px;
+  }
+
+  .btn-orange,
+  .btn-outline {
+    width: 128px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    gap: 8px;
+  }
+
+  .hero-default .btn-orange {
+    margin-top: 20px;
+  }
+
+  .hero-content {
+    margin-left: 32px;
+  }
+
+  .error-content h2 {
+    font-size: 25px;
+    margin-left: 44px;
+    margin-top: 132px;
+  }
+
+  .error-content {
+    width: 768px;
+  }
+
+  .error-content p {
+    font-size: 24px;
+    margin-left: 44px;
+  }
+
+  .error-content img {
+    width: 296px;
+    height: 260px;
+    align-self: flex-end;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-section {
+    width: 100%;
+    height: 720px;
+  }
+
+  #hero-title {
+    font-size: 64px;
+  }
+
+  .hero-content .app-loader {
+    font-size: 64px;
+  }
+
+  .hero-content .app-loader__spinner {
+    width: 64px;
+    height: 64px;
+    border-width: 5px;
+  }
+
+  .star-item {
+    width: 24px;
+    height: 24px;
+  }
+
+  #hero-description {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 36px;
+  }
+
+  .btn-orange,
+  .btn-outline {
+    width: 139px;
+    height: 48px;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .hero-content {
+    margin-left: 135px;
+  }
+}
