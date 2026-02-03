@@ -1,7 +1,7 @@
 // Modüller
 import { BASE_URL, API_KEY } from './api/movies-api.js';
-import { openMoviePopup } from './pop-up-movie-card.js';
-import { openTrailerPopup } from './pop-up-trailer-card.js';
+import { renderMoviePopup } from './pop-up-movie-card.js';
+import { renderTrailerPopup } from './pop-up-trailer-card.js';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
 const FALLBACK_IMAGE = '../img/library-hero-image.jpg';
@@ -163,7 +163,7 @@ async function handleShowMovieDetails(movieId) {
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
     const movie = await response.json();
-    openMoviePopup(movie);
+    renderMoviePopup(movie);
   } catch (error) {
     console.error('Error loading movie details:', error);
     showErrorPopup(); 
@@ -189,7 +189,7 @@ async function handleShowTrailer(movieId) {
     );
 
     if (trailer) {
-      openTrailerPopup(trailer.key);
+      renderTrailerPopup(trailer.key);
     } else {
       showErrorPopup(); 
     }

@@ -1,8 +1,8 @@
 // js/api/movies-api.js
 
-const API_KEY = '6e2b9ceff6313b472d60eed2769db38a'; // API key anahtarım artık burada
-const BASE_URL = 'https://api.themoviedb.org/3';
-
+export const API_KEY = '6e2b9ceff6313b472d60eed2769db38a'; // API key anahtarım artık burada
+export const BASE_URL = 'https://api.themoviedb.org/3';
+export const BASE_IMAGE = "https://image.tmdb.org/t/p/w500";
 /**
  * Haftalık trend olan filmleri getirir.
  */
