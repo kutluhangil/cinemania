@@ -19,18 +19,19 @@ function hideLoader() {
 
 // Error popup
 function showErrorPopup() {
-  const errorPopup = document.getElementById('error-popup');
+  const errorPopup = document.getElementById('my-library-error-popup');
   if (errorPopup) errorPopup.classList.add('show');
 }
 
 function closeErrorPopup() {
-  const errorPopup = document.getElementById('error-popup');
+  const errorPopup = document.getElementById('my-library-error-popup');
   if (errorPopup) errorPopup.classList.remove('show');
 }
 
 // Tema 
 function loadSavedTheme() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.body.classList.remove('dark-theme', 'light-theme');
   document.body.classList.add(`${savedTheme}-theme`);
 }
 
@@ -156,7 +157,7 @@ async function handleShowMovieDetails(movieId) {
   showLoader();
   try {
     const response = await fetch(
-      `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en`
+      `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-us`
     );
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -176,7 +177,7 @@ async function handleShowTrailer(movieId) {
   showLoader(); 
   try {
     const response = await fetch(
-      `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en`
+      `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-us`
     );
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -227,11 +228,20 @@ document.addEventListener('DOMContentLoaded', () => {
   
   document.querySelector('.my-library-error__close')?.addEventListener('click', closeErrorPopup);
   
-  document.getElementById('error-popup')?.addEventListener('click', (e) => {
-    if (e.target.id === 'error-popup') {
+  document.getElementById('my-library-error-popup')?.addEventListener('click', (e) => {
+    if (e.target.id === 'my-library-error-popup') {
       closeErrorPopup();
     }
   });
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const errorPopup = document.getElementById('my-library-error-popup');
+        if (errorPopup?.classList.contains('show')) {
+            closeErrorPopup();
+        }
+    }
+});
 });
 
 // Export

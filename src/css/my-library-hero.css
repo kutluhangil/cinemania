@@ -1,32 +1,32 @@
 :root {
-    --white: #ffffff;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --mlh-white: #ffffff;
+    --mlh-font-family: 'Roboto', sans-serif;
 }
 
 body.dark-theme {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: #ccc;
-    --text-tertiary: #999;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --overlay-color: rgba(0, 0, 0, 0.85);
+    --mlh-bg-primary: #0a0a0a;
+    --mlh-bg-secondary: #1a1a1a;
+    --mlh-text-primary: #ffffff;
+    --mlh-text-secondary: #ccc;
+    --mlh-text-tertiary: #999;
+    --mlh-border-color: rgba(255, 255, 255, 0.1);
+    --mlh-overlay-color: rgba(0, 0, 0, 0.85);
 }
 
 body.light-theme {
-    --bg-primary: #f5f5f5;
-    --bg-secondary: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #666;
-    --text-tertiary: #999;
-    --border-color: rgba(0, 0, 0, 0.1);
-    --overlay-color: rgba(255, 255, 255, 0.85);
+    --mlh-bg-primary: #f5f5f5;
+    --mlh-bg-secondary: #ffffff;
+    --mlh-text-primary: #1a1a1a;
+    --mlh-text-secondary: #666;
+    --mlh-text-tertiary: #999;
+    --mlh-border-color: rgba(0, 0, 0, 0.1);
+    --mlh-overlay-color: rgba(255, 255, 255, 0.85);
 }
-
 .my-library-hero {
     position: relative;
-    width: 1280px;
-    height: 660px;
+    width: 100%; 
+    max-width: 1280px; 
+    min-height: 380px;
     background-image: url('../img/library-hero-image.jpg');
     background-size: cover;
     background-position: center;
@@ -38,6 +38,8 @@ body.light-theme {
 }
 
 .my-library-hero__overlay {
+    position: relative;                         
+    z-index: 1;                                 
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg,
@@ -49,42 +51,41 @@ body.light-theme {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 117px;
-    color: var(--white);
+    padding-left: 20px;
+    color: var(--mlh-white);
 }
 
 .my-library-hero__title {
-    font-family: var(--font-family);
+    font-family: var(--mlh-font-family);
     font-weight: 700;
-    font-size: 64px;
-    color: var(--white);
-    margin-bottom: 20px;
+    font-size: 32px;
+    color: var(--mlh-white);
+    margin-bottom: 12px;
     line-height: 1.1;
     margin-top: 0;
     max-width: 600px;
 }
 
 .my-library-hero__description {
-    font-family: var(--font-family);
+    font-family: var(--mlh-font-family);
     font-weight: 400;
-    font-size: 18px;
-    color: var(--white);
-    line-height: 1.6;
-    max-width: 550px;
-    margin-top: 20px;
-    margin-bottom: 0;
+    font-size: 14px;
+    color: var(--mlh-white);
+    line-height: 1.4;
+    max-width: 260px;
+    margin-top: 0;
+    margin-bottom: 24px;
 }
 
-/* Yıldızlar */
 .my-library-hero__rating {
     display: flex;
     align-items: center;
     gap: 4px;
-    margin-bottom: 0;
+    margin-bottom: 12px;
 }
 
 .my-library-hero__rating .star {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .my-library-hero__rating .star.filled {
@@ -118,28 +119,31 @@ body.light-theme {
 /* Buton */
 .my-library-hero__buttons {
     display: flex;
-    gap: 10px;
-    margin-top: 30px;
+    gap: 8px;
+    margin-top: 0;
 }
 
 .my-library-hero__btn {
-    padding: 14px 32px;
-    font-family: var(--font-family);
-    font-size: 16px;
+    width: 117px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 74px;
+    font-family: var(--mlh-font-family);
+    font-size: 12px;
     font-weight: 500;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-transform: capitalize;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
 /* Trailer*/
 .my-library-hero__btn--trailer {
     background: linear-gradient(135deg, #ffc226, #f84119);
-    color: var(--white);
-    border: none;
-    border-radius: 16px;
+    color: var(--mlh-white);
 }
 
 .my-library-hero__btn--trailer:hover {
@@ -150,8 +154,8 @@ body.light-theme {
 /*Details*/
 .my-library-hero__btn--details {
     background-color: transparent;
-    color: var(--white);
-    border: 1px solid var(--white);
+    color: var(--mlh-white);
+    border: 1px solid var(--mlh-white);
 }
 
 .my-library-hero__btn--details:hover {
@@ -165,12 +169,12 @@ body.light-theme {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    border: 6px solid rgba(255, 255, 255, 0.1);
-    border-top: 6px solid #f87d19;
-    border-right: 6px solid #f87d19;
-    border-bottom: 6px solid transparent;
+    width: 32px;
+    height: 32px; 
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #f87d19;
+    border-right: 3px solid #f87d19;
+    border-bottom: 3px solid transparent;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     z-index: 10;
@@ -187,33 +191,33 @@ body.light-theme {
 }
 
 /* Error Popup */
-#error-popup {
+#my-library-error-popup {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--overlay-color);
+    background: var(--mlh-overlay-color);
     z-index: 1000;
     justify-content: center;
     align-items: center;
     transition: background 0.3s ease;
 }
 
-#error-popup.show {
+#my-library-error-popup.show {
     display: flex;
 }
 
 .my-library-error {
-    background: var(--bg-secondary);
+    background: var(--mlh-bg-secondary);
     border-radius: 16px;
     width: 90%;
-    max-width: 750px;
+    max-width: 320px;
     min-height: 340px;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     overflow: hidden;
     transition: background 0.3s ease;
@@ -226,38 +230,38 @@ body.light-theme .my-library-error {
 
 .my-library-error__text {
     flex: 1;
-    padding: 40px 20px 40px 50px;
+    padding: 30px 24px 10px;
+    text-align: center;
     z-index: 2;
 }
 
 .my-library-error__title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--mlh-text-primary);
     margin-bottom: 16px;
     letter-spacing: 1px;
     transition: color 0.3s ease;
 }
 
 .my-library-error__message {
-    font-size: 18px;
-    color: var(--text-secondary);
+    font-size: 15px;
+    color: var(--mlh-text-secondary);
     line-height: 1.8;
     transition: color 0.3s ease;
 }
 
 .my-library-error__image {
     flex-shrink: 0;
-    width: 300px;
-    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 30px;
+    padding: 10px 0 30px;
 }
 
 .my-library-error__image img {
-    width: 260px;
+    width: 180px;
     height: auto;
     object-fit: contain;
 }
@@ -268,7 +272,7 @@ body.light-theme .my-library-error {
     right: 20px;
     background: none;
     border: none;
-    color: var(--text-tertiary);
+    color: var(--mlh-text-tertiary);
     font-size: 28px;
     cursor: pointer;
     z-index: 3;
@@ -282,43 +286,40 @@ body.light-theme .my-library-error {
 }
 
 .my-library-error__close:hover {
-    color: var(--text-primary);
-    background: var(--border-color);
+    color: var(--mlh-text-primary);
+    background: var(--mlh-border-color);
 }
 
-/* Responsive */
-@media (max-width: 1280px) {
+/*Responsive*/
+@media (min-width: 768px) {
     .my-library-hero {
         width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .my-library-hero {
-        height: 500px;
+        height: 432px;
     }
 
     .my-library-hero__overlay {
-        padding-left: 40px;
+        padding-left: 32px;
     }
 
     .my-library-hero__title {
-        font-size: 48px;
-        max-width: 90%;
+        font-size: 44px;
     }
 
     .my-library-hero__description {
-        font-size: 16px;
-        max-width: 90%;
+        width: 254px;
+        height: 49px;
+        font-size: 14px;
+        margin-bottom: 77px;
     }
 
     .my-library-hero__buttons {
-        flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 
     .my-library-hero__btn {
-        width: 200px;
+        width: 128px;
+        height: 40px;
+        font-size: 14px;
     }
 
     .my-library-hero__rating .star {
@@ -332,30 +333,31 @@ body.light-theme .my-library-error {
     }
 
     .my-library-error {
-        flex-direction: column;
-        min-height: auto;
-        max-width: 320px;
+        flex-direction: row;
+        align-items: center;
+        max-width: 750px;
     }
 
     .my-library-error__text {
-        padding: 30px 24px 10px;
-        text-align: center;
+        padding: 40px 20px 40px 50px;
+        text-align: left;
     }
 
     .my-library-error__title {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .my-library-error__message {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .my-library-error__image {
-        width: 100%;
-        padding: 10px 0 30px;
+        width: 300px;
+        padding: 0;
+        padding-right: 30px;
     }
 
     .my-library-error__image img {
-        width: 180px;
+        width: 260px;
     }
 }
