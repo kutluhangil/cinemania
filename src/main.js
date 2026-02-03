@@ -10,4 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //document.addEventListener('DOMContentLoaded', () => {
 //  initHeader();
 //});
+import { startHeroApp } from './js/hero';
 
+startHeroApp();

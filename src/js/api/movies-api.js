@@ -1,7 +1,14 @@
 // src/js/api/movies-api.js
+<<<<<<< HEAD
+export const API_KEY = '6e2b9ceff6313b472d60eed2769db38a'; // benim anahtar
+export const BASE_URL = 'https://api.themoviedb.org/3';
+export const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+
+=======
  export const API_KEY = '6e2b9ceff6313b472d60eed2769db38a'; // benim anahtar
  export const BASE_URL = 'https://api.themoviedb.org/3';
  export const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+>>>>>>> main
 /**
  * Haftalık trend olan filmleri getirir.
  */
@@ -42,5 +49,17 @@ export async function getMovieDetails(movieId) {
     return await response.json();
   } catch (error) {
     console.error("Detay Hatası:", error);
+  }
+}
+
+export async function getDailyTrending() {
+  try {
+    const response = await fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`);
+    if (!response.ok) throw new Error('Veri Ã§ekilemedi!');
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Hata:", error);
+    return [];
   }
 }

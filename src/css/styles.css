@@ -26,5 +26,6 @@
 /* modal styles will be added */
 /* extra*/
 @import url('./badges.css');
+@import url('./loader.css');
 @import url('./back-link.css');
 @import url('./vite-promo.css');
