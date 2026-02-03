@@ -30,6 +30,46 @@ body.light-theme {
   color: #111111;
 }
 
+body.light-theme .search-input {
+  border-color: #595959;
+  color: #111;
+}
+
+body.light-theme .search-input::placeholder {
+  color: #595959;
+}
+
+body.light-theme .year-btn {
+  background-color: #fff;
+  border-color: #595959;
+}
+
+body.light-theme #selectedYear {
+  color: #595959 !important;
+}
+
+body.light-theme .search-clear-btn svg {
+  background: linear-gradient(145deg, #ffc226 0%, #f84119 100%);
+  border-radius: 50%;
+}
+
+body.light-theme .icon-chevron {
+  background: linear-gradient(145deg, #ffc226 0%, #f84119 100%);
+  border-radius: 50%;
+}
+
+body.light-theme .year-dropdown {
+  background-color: #fff;
+}
+
+body.light-theme .year-dropdown li {
+  color: #282828;
+}
+
+body.light-theme .year-dropdown li:hover {
+  color: #f87719;
+}
+
 /* Header içinde default text rengi */
 .header,
 .header a,
