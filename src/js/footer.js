@@ -1,4 +1,4 @@
-import { initCatalog } from './catalog.js';
+
 
 const developers = [
     {
