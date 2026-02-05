@@ -1,9 +1,15 @@
 /* Ana konteyner: Body stillerini buraya çektik */
+
 .weekly-trends {
     background-color: #000;
     color: #fff;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
     padding: 20px 0;
+    text-transform: uppercase;  
 }
 
 .weekly-trends__container {
