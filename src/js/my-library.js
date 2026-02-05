@@ -156,7 +156,10 @@ function toggleEmpty(movies) {
   emptyBox.classList.toggle('hidden', !isEmpty);
   listEl.classList.toggle('hidden', isEmpty);
   controlsBox.classList.toggle('hidden', isEmpty);
-  loadMoreBtn.classList.toggle('hidden', isEmpty);
+
+  if (loadMoreBtn) {
+    loadMoreBtn.classList.toggle('hidden', isEmpty);
+  }
 }
 
 /* ======================================================
@@ -170,6 +173,8 @@ function updateUI() {
   renderMovies(visible);
   toggleEmpty(allMovies);
 
+  if (!loadMoreBtn) return;
+
   if (visible.length < allMovies.length) {
     loadMoreBtn.classList.remove('hidden');
   } else {
@@ -182,19 +187,24 @@ function updateUI() {
    Daha fazla film yüklemek için pagination artırılır
 ====================================================== */
 
-loadMoreBtn.addEventListener('click', () => {
-  currentPage++;
-  updateUI();
-});
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener('click', () => {
+    currentPage++;
+    updateUI();
+  });
+}
+
 
 /* ======================================================
    GENRE DROPDOWN TOGGLE
 ====================================================== */
 
-genreBtn.addEventListener('click', () => {
-  genreMenu.classList.toggle('open');
-  genreBtn.classList.toggle('active');
-});
+if (genreBtn && genreMenu) {
+  genreBtn.addEventListener('click', () => {
+    genreMenu.classList.toggle('open');
+    genreBtn.classList.toggle('active');
+  });
+}
 
 /* ======================================================
    INITIALIZATION
