@@ -24,3 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     startHeroApp();
   }
 });
+
+import { initFooter } from './js/footer.js';
+document.addEventListener('DOMContentLoaded', () => {
+  initFooter();
+});
+
+startHeroApp();
