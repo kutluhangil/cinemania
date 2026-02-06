@@ -1,15 +1,30 @@
 <footer class="footer">
-  <div class="container">
+  <div class="footer-container container">
     <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
+      <span class="footer-text-line">© 2023 | All Rights Reserved |</span>
+      <span class="footer-text-line">
+        Developed with
+        <span class="footer-heart">♥</span>
+        by
+        <a class="footer-link" href="#" id="footer-link">GoIT Students</a>
+      </span>
     </p>
+
+    <!-- Developer Team Modal -->
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <h2 class="modal-title">CINEMANIA PROJECT TEAM</h2>
+        <p class="modal-subtitle">The creative minds behind Cinemania</p>
+        <button type="button" class="modal-close-btn" data-modal-close>
+          <svg class="modal-close-icon" width="14" height="14" viewBox="0 0 14 14">
+            <path
+              d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" />
+          </svg>
+        </button>
+        <div class="team-list-container">
+          <ul class="team-list"></ul>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
