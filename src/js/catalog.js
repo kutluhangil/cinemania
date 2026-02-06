@@ -262,6 +262,7 @@ export function initCatalog() {
       const card = document.createElement('a');
       card.className = 'movie-card';
       card.setAttribute('data-id', movie.id);
+      card.setAttribute('data-movie-id', movie.id);
       card.href = `catalog-list.html?id=${movie.id}`;
 
       const poster = movie.poster_path
@@ -289,6 +290,14 @@ export function initCatalog() {
           <div class="movie-rating-stars"></div>
         </div>
       `;
+
+      card.addEventListener('click', e => {
+        e.preventDefault(); // linke gitmeyi engelle
+        e.stopPropagation();
+
+        const movieId = card.dataset.movieId; // data-movie-id'den gelir
+        openPopupSafe(movieId);
+      });
 
       moviesContainer.appendChild(card);
 
@@ -342,3 +351,26 @@ function renderStarsToRating(el, rating) {
         `;
   }
 }
+
+// ======================
+// POPUP HOOK (safe)
+// ======================
+
+const openPopupSafe = movieId => {
+  // popup global olarak window'a eklenmiş olabilir
+  if (typeof window.openMoviePopup === 'function') {
+    window.openMoviePopup(movieId);
+    return true;
+  }
+
+  // popup export ile gelirse (opsiyonel)
+  if (typeof openMoviePopup === 'function') {
+    openMoviePopup(movieId);
+    return true;
+  }
+
+  console.warn(
+    'openMoviePopup bulunamadı. Popup modülü sayfaya yüklenmemiş olabilir.'
+  );
+  return false;
+};
