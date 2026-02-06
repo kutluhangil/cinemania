@@ -263,7 +263,7 @@ export function initCatalog() {
       card.className = 'movie-card';
       card.setAttribute('data-id', movie.id);
       card.setAttribute('data-movie-id', movie.id);
-      card.href = `catalog-list.html?id=${movie.id}`;
+      card.href = `catalog.html?id=${movie.id}`;
 
       const poster = movie.poster_path
         ? `${IMAGE_BASE}${movie.poster_path}`
