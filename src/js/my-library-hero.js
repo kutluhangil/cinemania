@@ -223,6 +223,8 @@ function displayDefaultMyLibraryHero() {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+  if (!document.querySelector('.my-library-hero')) return;
+
   loadSavedTheme();
   initializeMyLibraryHero();
   
