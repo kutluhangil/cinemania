@@ -1,7 +1,7 @@
 // Modüller
 import { BASE_URL, API_KEY } from './api/movies-api.js';
 import { renderMoviePopup } from './pop-up-movie-card.js';
-import { renderTrailerPopup } from './pop-up-trailer-card.js';
+import { renderTrailerPopup as externalRenderTrailer } from './pop-up-trailer-card.js';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
 const FALLBACK_IMAGE = '../img/library-hero-image.jpg';
@@ -33,6 +33,47 @@ function loadSavedTheme() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
   document.body.classList.remove('dark-theme', 'light-theme');
   document.body.classList.add(`${savedTheme}-theme`);
+}
+
+function myRenderTrailerPopup(videoKey) {
+  const modal = document.getElementById('my-library-video-modal');
+  const iframe = document.getElementById('my-library-trailer-video');
+
+  if (modal && iframe) {
+    iframe.src = `https://www.youtube.com/embed/${videoKey}?autoplay=1`;
+    modal.classList.remove('modal-hidden');
+  }
+}
+
+function renderTrailerPopup(videoKey) {
+  // renderTrailerPopup 
+  if (typeof externalRenderTrailer === 'function') {
+    try {
+      externalRenderTrailer(videoKey);
+      
+      // Eğer modal açıldıysa başarılı
+      const externalModal = document.getElementById('video-modal');
+      if (externalModal && !externalModal.classList.contains('modal-hidden')) {
+        return;
+      }
+    } catch (error) {
+      console.warn('External trailer popup failed, using My Library popup:', error);
+    }
+  }
+  
+  // Eğer external çalışmazsa kendi modalını kullan
+  myRenderTrailerPopup(videoKey);
+}
+
+// My Library video modal kapatma
+function closeMyLibraryVideoModal() {
+  const modal = document.getElementById('my-library-video-modal');
+  const iframe = document.getElementById('my-library-trailer-video');
+  
+  if (modal && iframe) {
+    modal.classList.add('modal-hidden');
+    iframe.src = '';
+  }
 }
 
 // My Library Hero
@@ -143,13 +184,20 @@ function displayMyLibraryHero(movie) {
 
 // Buton
 function attachMyLibraryHeroButtonListeners(movieId) {
-  document
-    .getElementById('my-library-hero-details-btn')
-    ?.addEventListener('click', () => handleShowMovieDetails(movieId));
-
-  document
-    .getElementById('my-library-hero-trailer-btn')
-    ?.addEventListener('click', () => handleShowTrailer(movieId));
+  const detailsBtn = document.getElementById('my-library-hero-details-btn');
+  const trailerBtn = document.getElementById('my-library-hero-trailer-btn');
+  
+  if (detailsBtn) {
+    const newDetailsBtn = detailsBtn.cloneNode(true);
+    detailsBtn.parentNode.replaceChild(newDetailsBtn, detailsBtn);
+    newDetailsBtn.addEventListener('click', () => handleShowMovieDetails(movieId));
+  }
+  
+  if (trailerBtn) {
+    const newTrailerBtn = trailerBtn.cloneNode(true);
+    trailerBtn.parentNode.replaceChild(newTrailerBtn, trailerBtn);
+    newTrailerBtn.addEventListener('click', () => handleShowTrailer(movieId));
+  }
 }
 
 // Detay modal
@@ -160,7 +208,9 @@ async function handleShowMovieDetails(movieId) {
       `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-us`
     );
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
     const movie = await response.json();
     renderMoviePopup(movie);
@@ -180,7 +230,9 @@ async function handleShowTrailer(movieId) {
       `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-us`
     );
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
     const data = await response.json();
 
@@ -228,20 +280,51 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSavedTheme();
   initializeMyLibraryHero();
   
-  document.querySelector('.my-library-error__close')?.addEventListener('click', closeErrorPopup);
+  // Error popup
+  const errorCloseBtn = document.querySelector('.my-library-error__close');
+  if (errorCloseBtn) {
+    errorCloseBtn.addEventListener('click', closeErrorPopup);
+  }
   
-  document.getElementById('my-library-error-popup')?.addEventListener('click', (e) => {
-    if (e.target.id === 'my-library-error-popup') {
-      closeErrorPopup();
-    }
-  });
+  const errorPopup = document.getElementById('my-library-error-popup');
+  if (errorPopup) {
+    errorPopup.addEventListener('click', (e) => {
+      if (e.target.id === 'my-library-error-popup') {
+        closeErrorPopup();
+      }
+    });
+  }
   
+  // X butonu
+  const closeVideoBtn = document.querySelector('.close-my-library-video');
+  if (closeVideoBtn) {
+    closeVideoBtn.addEventListener('click', closeMyLibraryVideoModal);
+  }
+
+  // Modal dışı
+  const videoModal = document.getElementById('my-library-video-modal');
+  if (videoModal) {
+    videoModal.addEventListener('click', (e) => {
+      if (e.target.id === 'my-library-video-modal') {
+        closeMyLibraryVideoModal();
+      }
+    });
+  }
+  
+  // ESC tuşu
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const errorPopup = document.getElementById('my-library-error-popup');
-        if (errorPopup?.classList.contains('show')) {
-            closeErrorPopup();
-        }
+      // Error popup
+      const errorPopup = document.getElementById('my-library-error-popup');
+      if (errorPopup?.classList.contains('show')) {
+        closeErrorPopup();
+      }
+
+      // Video modal
+      const videoModal = document.getElementById('my-library-video-modal');
+      if (videoModal && !videoModal.classList.contains('modal-hidden')) {
+        closeMyLibraryVideoModal();
+      }
     }
 });
 });

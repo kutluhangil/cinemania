@@ -402,3 +402,109 @@ body.light-theme .my-library-error {
         border-width: 5px;
     }
 }
+#my-library-video-modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#my-library-video-modal.modal-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#my-library-video-modal .video-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    background: var(--mlh-bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease;
+}
+
+body.light-theme #my-library-video-modal .video-content {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.close-my-library-video {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    font-size: 36px;
+    color: var(--mlh-white);
+    cursor: pointer;
+    z-index: 10000;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-family: var(--mlh-font-family);
+}
+
+.close-my-library-video:hover {
+    color: #f84119;
+    transform: scale(1.1);
+}
+
+#my-library-video-modal .iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+#my-library-video-modal .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    #my-library-video-modal .video-content {
+        width: 85%;
+        max-width: 1000px;
+    }
+
+    .close-my-library-video {
+        top: -50px;
+        font-size: 42px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Desktop*/
+@media (min-width: 1280px) {
+    #my-library-video-modal .video-content {
+        max-width: 1200px;
+    }
+
+    .close-my-library-video {
+        top: -55px;
+        font-size: 48px;
+        width: 50px;
+        height: 50px;
+    }
+}
