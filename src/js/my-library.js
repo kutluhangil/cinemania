@@ -20,7 +20,7 @@ const errorBox = document.querySelector('.library-error');
    Sayfa başına film sayısı ve uygulama state'leri
 ====================================================== */
 
-const PER_PAGE = 6;
+const PER_PAGE = 9;
 let currentPage = 1;
 
 // Tüm filmler (filtrelenmiş haliyle)
@@ -35,10 +35,12 @@ let libraryMovies = [];
 ====================================================== */
 
 function showError() {
+  if (!errorBox) return;
   errorBox.classList.remove('hidden');
 }
 
 function hideError() {
+  if (!errorBox) return;
   errorBox.classList.add('hidden');
 }
 
@@ -48,10 +50,17 @@ function hideError() {
 ====================================================== */
 
 function normalizeMovie(movie) {
+  const rawGenre =
+    Array.isArray(movie.genre) ? movie.genre[0] : movie.genre;
+  const genreLabel = rawGenre ? String(rawGenre).trim() : 'Unknown';
+  const genreKey = genreLabel.toLowerCase();
+
   return {
     ...movie,
     year: movie.year || '2023',
     rating: movie.rating || (Math.random() * 3 + 7).toFixed(1),
+    genre: genreLabel,
+    _genreKey: genreKey,
   };
 }
 
@@ -62,23 +71,17 @@ function normalizeMovie(movie) {
 
 function createStarsSVG(rating) {
   const score = Number(rating) / 2;
-
-  const full = Math.floor(score);
-  const half = score % 1 >= 0.5 ? 1 : 0;
-  const empty = 5 - full - half;
+  const full = Math.round(score);
+  const empty = 5 - full;
 
   let stars = '';
 
   for (let i = 0; i < full; i++) {
-    stars += `<img class="star" src="/assets/star.svg" alt="star" />`;
-  }
-
-  if (half) {
-    stars += `<img class="star" src="/assets/star-half.svg" alt="star" />`;
+    stars += `<img class="star" src="/assets/star-icon-filled.svg" alt="star" />`;
   }
 
   for (let i = 0; i < empty; i++) {
-    stars += `<img class="star" src="/assets/star-outline.svg" alt="star" />`;
+    stars += `<img class="star" src="/assets/star-icon.svg" alt="star" />`;
   }
 
   return stars;
@@ -262,19 +265,22 @@ export function initMyLibrary() {
 ====================================================== */
 
 function fillGenres(movies) {
-  const genres = ['all'];
+  if (!genreMenu) return;
 
-  movies.forEach(movie => {
-    if (!genres.includes(movie.genre)) {
-      genres.push(movie.genre);
-    }
-  });
+  const genres = [
+    { key: 'romance', label: 'Romance' },
+    { key: 'detective', label: 'Detective' },
+    { key: 'thriller', label: 'Thriller' },
+    { key: 'action', label: 'Action' },
+    { key: 'documentary', label: 'Documentary' },
+    { key: 'horror', label: 'Horror' },
+  ];
 
   genreMenu.innerHTML = genres
     .map(
-      genre => `
-        <li data-genre="${genre}" class="${genre === 'all' ? 'active' : ''}">
-          ${genre === 'all' ? 'All Genres' : genre}
+      g => `
+        <li data-genre="${g.key}" class="${g.key === 'action' ? 'active' : ''}">
+          ${g.label}
         </li>
       `
     )
@@ -288,13 +294,14 @@ function fillGenres(movies) {
 ====================================================== */
 
 function attachGenreEvents() {
+  if (!genreMenu || !genreText || !genreBtn) return;
   const items = genreMenu.querySelectorAll('li');
 
   items.forEach(item => {
     item.addEventListener('click', () => {
       const genre = item.dataset.genre;
 
-      genreText.textContent = item.textContent;
+      genreText.textContent = 'Genre';
 
       items.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
@@ -302,10 +309,7 @@ function attachGenreEvents() {
       genreMenu.classList.remove('open');
       genreBtn.classList.remove('active');
 
-      allMovies =
-        genre === 'all'
-          ? [...libraryMovies]
-          : libraryMovies.filter(movie => movie.genre === genre);
+      allMovies = libraryMovies.filter(movie => movie._genreKey === genre);
 
       currentPage = 1;
       updateUI();
@@ -319,6 +323,7 @@ function attachGenreEvents() {
 ====================================================== */
 
 document.addEventListener('click', e => {
+  if (!genreMenu || !genreBtn) return;
   if (!e.target.closest('.genre-select')) {
     genreMenu.classList.remove('open');
     genreBtn.classList.remove('active');
@@ -334,13 +339,15 @@ function openMovieModal(movie) {
   console.log('TIKLANAN FILM:', movie);
 }
 
-listEl.addEventListener('click', e => {
-  const card = e.target.closest('.movie-card');
-  if (!card) return;
+if (listEl) {
+  listEl.addEventListener('click', e => {
+    const card = e.target.closest('.movie-card');
+    if (!card) return;
 
-  const movieId = card.dataset.id;
-  const movie = allMovies.find(m => String(m.id) === movieId);
-  if (!movie) return;
+    const movieId = card.dataset.id;
+    const movie = allMovies.find(m => String(m.id) === movieId);
+    if (!movie) return;
 
-  openMovieModal(movie);
-});
+    openMovieModal(movie);
+  });
+}

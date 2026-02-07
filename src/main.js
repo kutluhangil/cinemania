@@ -23,3 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 startHeroApp();
+
+import { initMyLibrary } from './js/my-library.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.library-section')) {
+    initMyLibrary();
+  }
+});
