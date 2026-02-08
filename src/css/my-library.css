@@ -79,7 +79,7 @@ body {
 /* ================= CARD ================= */
 
 /* Film kartının ana kapsayıcısı */
-.movie-card {
+.library-movie-card {
   width: 100%;
   width: 280px;
   height: 406px;
@@ -93,7 +93,7 @@ body {
 }
 
 /* Kart hover efekti */
-.movie-card:hover {
+.library-movie-card:hover {
   transform: scale(1.03);
   box-shadow: var(--shadow);
 }
@@ -248,7 +248,7 @@ body {
 }
 
 /* Search butonu */
-.search-btn {
+.library-search-btn {
   margin: 30px auto 0;
   display: block;
   width: 121px;
@@ -267,7 +267,7 @@ body {
 }
 
 /* Search hover */
-.search-btn:hover {
+.library-search-btn:hover {
   transform: scale(1.04);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
 }
@@ -365,7 +365,7 @@ body {
 /* TABLET */
 
 @media (min-width: 768px) {
-  .movie-card {
+  .library-movie-card {
     width: 224px;
     height: 325px;
   }
@@ -405,7 +405,7 @@ body {
 /* DESKTOP */
 
 @media (min-width: 1280px) {
-  .movie-card {
+  .library-movie-card {
     width: 395px;
     height: 574px;
   }

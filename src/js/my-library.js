@@ -50,15 +50,22 @@ function hideError() {
 ====================================================== */
 
 function normalizeMovie(movie) {
-  const rawGenre =
-    Array.isArray(movie.genre) ? movie.genre[0] : movie.genre;
-  const genreLabel = rawGenre ? String(rawGenre).trim() : 'Unknown';
-  const genreKey = genreLabel.toLowerCase();
+  let genreNames = [];
+
+  if (Array.isArray(movie.genres) && movie.genres.length) {
+    genreNames = movie.genres.map(g => g.name);
+  }
+
+  const genreLabel =
+    genreNames.length > 0 ? genreNames.slice(0, 2).join(', ') : 'Unknown';
+
+  const genreKey =
+    genreNames.length > 0 ? genreNames[0].toLowerCase() : 'unknown';
 
   return {
     ...movie,
-    year: movie.year || '2023',
-    rating: movie.rating || (Math.random() * 3 + 7).toFixed(1),
+    year: movie.release_date?.slice(0, 4) || movie.year || '2023',
+    rating: movie.rating || movie.vote_average?.toFixed(1) || '7.0',
     genre: genreLabel,
     _genreKey: genreKey,
   };
@@ -92,119 +99,10 @@ function createStarsSVG(rating) {
    Kullanıcının kütüphanesini LocalStorage'dan alır
 ====================================================== */
 
+const LIBRARY_KEY = 'my-library';
+
 function getLibraryMovies() {
-  return JSON.parse(localStorage.getItem('library')) || [];
-}
-
-/* ======================================================
-   DEMO SEED
-   Kütüphane boşsa örnek film verisi ekler
-====================================================== */
-
-function seedLibraryIfEmpty() {
-  const existing = getLibraryMovies();
-  if (Array.isArray(existing) && existing.length >= 12) return;
-
-  const demoMovies = [
-    {
-      id: 101,
-      title: 'Ghosted',
-      poster_path: '/liLN69YgoovHVgmlHJ876PKi5Yi.jpg',
-      genre: 'Action',
-      year: '2023',
-      rating: 6.5,
-    },
-    {
-      id: 102,
-      title: 'Ant-Man and the Wasp: Quantumania',
-      poster_path: '/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg',
-      genre: 'Action',
-      year: '2023',
-      rating: 6.1,
-    },
-    {
-      id: 103,
-      title: 'Evil Dead Rise',
-      poster_path: '/5ik4ATKmNtmJU6AYD0bLm56BCVM.jpg',
-      genre: 'Horror',
-      year: '2023',
-      rating: 6.9,
-    },
-    {
-      id: 104,
-      title: 'The Super Mario Bros. Movie',
-      poster_path: '/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg',
-      genre: 'Animation',
-      year: '2023',
-      rating: 7.2,
-    },
-    {
-      id: 105,
-      title: 'Dead Ringers',
-      poster_path: '/3GZB7pnyAw6QV053TwxiqvRyOw3.jpg',
-      genre: 'Drama',
-      year: '2023',
-      rating: 6.7,
-    },
-    {
-      id: 106,
-      title: 'The Mandalorian',
-      poster_path: '/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg',
-      genre: 'Sci-Fi',
-      year: '2023',
-      rating: 8.5,
-    },
-    {
-      id: 107,
-      title: "A Tourist's Guide to Love",
-      poster_path: '/z5oRHIL7fZ3d1qRd1jlwWw8WZxw.jpg',
-      genre: 'Romance',
-      year: '2023',
-      rating: 6.4,
-    },
-    {
-      id: 108,
-      title: 'The Diplomat',
-      poster_path: '/cOKXV0FalCYixNmZYCfHXgyQ0VX.jpg',
-      genre: 'Thriller',
-      year: '2023',
-      rating: 7.7,
-    },
-    {
-      id: 109,
-      title: 'Avatar: The Way of Water',
-      poster_path: '/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg',
-      genre: 'Fantasy',
-      year: '2022',
-      rating: 7.6,
-    },
-    {
-      id: 110,
-      title: 'John Wick',
-      poster_path: '/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg',
-      genre: 'Action',
-      year: '2014',
-      rating: 7.4,
-    },
-    {
-      id: 111,
-      title: 'Coco',
-      poster_path: '/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg',
-      genre: 'Animation',
-      year: '2017',
-      rating: 8.4,
-    },
-    {
-      id: 112,
-      title: 'Parasite',
-      poster_path: '/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
-      genre: 'Thriller',
-      year: '2019',
-      rating: 8.5,
-    },
-  ];
-
-  localStorage.setItem('library', JSON.stringify(demoMovies));
+  return JSON.parse(localStorage.getItem(LIBRARY_KEY)) || [];
 }
 
 /* ======================================================
@@ -216,7 +114,7 @@ function createMovieCard(movie) {
   const stars = createStarsSVG(movie.rating);
 
   return `
-    <li class="movie-card" data-id="${movie.id}">
+    <li class="library-movie-card" data-id="${movie.id}">
       <div class="card-poster">
         <img
           src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
@@ -333,7 +231,6 @@ function initLibrary() {
 
   try {
     setTimeout(() => {
-      seedLibraryIfEmpty();
       libraryMovies = getLibraryMovies().map(normalizeMovie);
       allMovies = [...libraryMovies];
 
@@ -382,24 +279,31 @@ export function initMyLibrary() {
 function fillGenres(movies) {
   if (!genreMenu) return;
 
-  const genres = [
-    { key: 'romance', label: 'Romance' },
-    { key: 'detective', label: 'Detective' },
-    { key: 'thriller', label: 'Thriller' },
-    { key: 'action', label: 'Action' },
-    { key: 'documentary', label: 'Documentary' },
-    { key: 'horror', label: 'Horror' },
-  ];
+  const genreSet = new Map();
 
-  genreMenu.innerHTML = genres
-    .map(
-      g => `
-        <li data-genre="${g.key}" class="${g.key === 'action' ? 'active' : ''}">
-          ${g.label}
-        </li>
-      `
-    )
-    .join('');
+  movies.forEach(movie => {
+    if (!movie.genre || movie.genre === 'Unknown') return;
+
+    movie.genre.split(',').forEach(g => {
+      const label = g.trim();
+      const key = label.toLowerCase();
+
+      if (!genreSet.has(key)) {
+        genreSet.set(key, label);
+      }
+    });
+  });
+
+  // All Genres seçeneği
+  genreMenu.innerHTML = `
+    <li data-genre="all" class="active">All Genres</li>
+  `;
+
+  genreSet.forEach((label, key) => {
+    genreMenu.innerHTML += `
+      <li data-genre="${key}">${label}</li>
+    `;
+  });
 
   attachGenreEvents();
 }
@@ -410,13 +314,12 @@ function fillGenres(movies) {
 
 function attachGenreEvents() {
   if (!genreMenu || !genreText || !genreBtn) return;
+
   const items = genreMenu.querySelectorAll('li');
 
   items.forEach(item => {
     item.addEventListener('click', () => {
       const genre = item.dataset.genre;
-
-      genreText.textContent = 'Genre';
 
       items.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
@@ -424,7 +327,15 @@ function attachGenreEvents() {
       genreMenu.classList.remove('open');
       genreBtn.classList.remove('active');
 
-      allMovies = libraryMovies.filter(movie => movie._genreKey === genre);
+      genreText.textContent = item.textContent;
+
+      if (genre === 'all') {
+        allMovies = [...libraryMovies];
+      } else {
+        allMovies = libraryMovies.filter(movie =>
+          movie.genre.toLowerCase().includes(genre)
+        );
+      }
 
       currentPage = 1;
       updateUI();
@@ -456,7 +367,7 @@ function openMovieModal(movie) {
 
 if (listEl) {
   listEl.addEventListener('click', e => {
-    const card = e.target.closest('.movie-card');
+    const card = e.target.closest('.library-movie-card');
     if (!card) return;
 
     const movieId = card.dataset.id;
