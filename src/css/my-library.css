@@ -1,0 +1,444 @@
+/* ================= BASE ================= */
+
+/* Temel reset ve box model ayarları */
+*,
+*::before,
+*::after {
+  /* Padding ve border’ın elementin toplam boyutuna dahil olmasını sağlar */
+  box-sizing: border-box;
+}
+
+/* ================= CSS VARIABLES (LIGHT THEME) ================= */
+
+/* Açık tema için kullanılan renk ve gölge değişkenleri */
+:root {
+  --bg-genre: #fff; /* Genre dropdown arka planı */
+  --text-genre: #282828; /* Genre metin rengi */
+  --border-genre: #595959; /* Genre border rengi */
+  --border-bttm: #595959; /* Genre list item alt çizgisi */
+  --bg-body: #ffffff; /* Sayfa arka plan rengi */
+  --bg-hover: #f5f5f5; /* Hover arka plan rengi */
+  --genre-active: #f87719; /* Aktif genre rengi */
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.6); /* Kart hover gölgesi */
+  --empty-title: #111111;
+}
+
+/* ================= CSS VARIABLES (DARK THEME) ================= */
+
+/* Dark theme aktif olduğunda değişen değişkenler */
+body.dark-theme {
+  --bg-genre: #1c1c1c;
+  --text-genre: #b7b7b7;
+  --border-genre: #ffffff;
+  --border-bttm: #b7b7b7;
+  --bg-body: #111111;
+  --bg-hover: #2b2b2b;
+  --genre-active: #f87719;
+  --shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+  --empty-title: #ffffff;
+}
+
+/* ================= BODY ================= */
+
+/* Genel font ve arka plan rengi */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-body);
+}
+
+/* ================= GRID ================= */
+
+/* Film kartlarının grid yerleşimi */
+.library-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 280px);
+  gap: 24px 16px;
+  justify-content: center;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  padding-bottom: 40px;
+}
+
+/* ================= LOADER & ERROR ================= */
+
+/* Yükleniyor ve hata mesajlarının ortak stili */
+.library-loader,
+.library-error {
+  text-align: center;
+  padding: 40px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* Hata mesajı için özel renk */
+.library-error {
+  color: #d9534f;
+}
+
+/* ================= CARD ================= */
+
+/* Film kartının ana kapsayıcısı */
+.movie-card {
+  width: 100%;
+  width: 280px;
+  height: 406px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #000;
+  /* Hover animasyonu */
+  transition: 0.3s;
+}
+
+/* Kart hover efekti */
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow);
+}
+
+/* ================= POSTER ================= */
+
+/* Poster görselini saran alan */
+.card-poster {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Poster görselinin kendisi */
+.card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Görseli kırpmadan doldurur */
+  display: block;
+}
+
+/* ================= OVERLAY ================= */
+
+/* Kartın altındaki gradient ve metin alanı */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  padding: 16px;
+
+  /* Alttan üste doğru kararan gradient */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  color: #fff;
+
+  /* İçerikleri alta hizalar */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* ================= TEXT ================= */
+
+/* Film başlığı */
+.movie-title {
+  margin: 0;
+  padding: 0;
+
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #ffffff;
+
+  /* Mobile varsayılan */
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+/* Film türü ve yıl bilgisi */
+.movie-meta {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: #b7b7b7;
+}
+
+/* ================= RATING ================= */
+
+/* Yıldızların bulunduğu alan */
+.movie-rating {
+  width: 86px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  color: gold;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Yıldız ikonları */
+.movie-rating img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+/* ================= BOTTOM ROW ================= */
+
+/* Meta ve rating’in yan yana durduğu alan */
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* ================= LOAD MORE ================= */
+
+/* Load more butonu */
+.load-more-btn {
+  margin: 0 auto;
+  margin-bottom: 40px;
+  display: block;
+  padding: 12px 28px;
+  background: linear-gradient(160deg, #ffc226 6%, #f84119 100%);
+  border: none;
+  border-radius: 24px;
+  color: #111;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Load more hover efekti */
+.load-more-btn:hover {
+  transform: scale(1.04);
+  box-shadow: var(--shadow);
+}
+
+/* ================= EMPTY STATE ================= */
+
+/* Kütüphane boşken gösterilen alan */
+.library-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty açıklama */
+.library-empty p {
+  color: var(--empty-title);
+  margin-bottom: 20px;
+}
+
+/* Search butonu */
+.search-btn {
+  margin: 30px auto 0;
+  display: block;
+  width: 121px;
+  height: 38px;
+  padding: 12px 24px;
+  background: linear-gradient(160deg, #ffc226 6%, #f84119 100%);
+  border: none;
+  border-radius: 74px;
+  color: #111;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Search hover */
+.search-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* ================= CONTROLS ================= */
+
+/* Genre select alanı */
+.library-controls {
+  margin-top: 40px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+}
+
+/* Gizleme yardımcı sınıfı */
+.hidden {
+  display: none !important;
+}
+
+/* ================= GENRE SELECT ================= */
+
+/* Genre dropdown kapsayıcı */
+.genre-select {
+  position: relative;
+  width: 180px;
+}
+
+/* Genre butonu */
+.genre-btn {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-genre);
+  background: var(--bg-genre);
+  color: var(--text-genre);
+  font-size: smaller;
+  font-weight: 600;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Genre açılır menü */
+.genre-menu {
+  position: absolute;
+  top: 39px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-genre);
+  border-radius: 8px;
+  border: 1px solid var(--border-genre);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Açık durum */
+.genre-menu.open {
+  display: block;
+}
+
+/* Genre item */
+.genre-menu li {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 0.5px solid var(--border-bttm);
+  transition: background-color 0.2s ease;
+  color: var(--text-genre);
+  font-size: smaller;
+  font-weight: 600;
+}
+
+/* Son item alt çizgisiz */
+.genre-menu li:last-child {
+  border-bottom: none;
+}
+
+/* Hover durumu */
+.genre-menu li:hover {
+  background: var(--bg-hover);
+}
+
+/* Aktif genre */
+.genre-menu li.active {
+  color: var(--genre-active);
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* TABLET */
+
+@media (min-width: 768px) {
+  .movie-card {
+    width: 224px;
+    height: 325px;
+  }
+
+  .card-overlay {
+    padding: 12px;
+  }
+
+  .library-controls {
+    margin-top: 60px;
+    margin-bottom: 36px;
+    margin-left: 32px;
+  }
+
+  .library-list {
+    grid-template-columns: repeat(3, 224px);
+  }
+
+  .movie-title {
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: none;
+  }
+
+  .movie-rating {
+    width: 66px;
+    height: 10px;
+    font-size: 10px;
+  }
+
+  .movie-rating img {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* DESKTOP */
+
+@media (min-width: 1280px) {
+  .movie-card {
+    width: 395px;
+    height: 574px;
+  }
+
+  .card-overlay {
+    padding: 20px;
+  }
+
+  .library-controls {
+    margin-top: 80px;
+    margin-bottom: 48px;
+    margin-left: 32px;
+  }
+
+  .library-list {
+    gap: 32px 16px;
+    grid-template-columns: repeat(3, 395px);
+  }
+
+  .movie-title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .movie-rating {
+    width: 106px;
+    height: 18px;
+    font-size: 16px;
+    overflow: hidden;
+  }
+
+  .movie-rating img {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -8,28 +8,20 @@ import { initCatalog } from './js/catalog.js';
 import { startHeroApp } from './js/hero.js';
 import { initMyLibrary } from './js/my-library.js';
 import { initializeMyLibraryHero } from './js/my-library-hero.js';
+import { initFooter } from './js/footer.js';
 import './js/pop-up-movie-card.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
-  
-  // Sayfa kontrolü
+  initFooter();
+
   const isLibraryPage = document.querySelector('.library-section') !== null;
-  
+
   if (isLibraryPage) {
-    // My Library sayfasındayız
     initializeMyLibraryHero();
     initMyLibrary();
   } else {
-    // Ana sayfadayız
     initCatalog();
     startHeroApp();
   }
 });
-
-import { initFooter } from './js/footer.js';
-document.addEventListener('DOMContentLoaded', () => {
-  initFooter();
-});
-
-startHeroApp();

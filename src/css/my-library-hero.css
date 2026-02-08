@@ -24,7 +24,7 @@ body.light-theme {
 }
 .my-library-hero {
     position: relative;
-    width: 320px;
+    width: 100%;
     height: 380px;
     background-image: url('../img/library-hero-image.jpg');
     background-size: cover;
@@ -119,7 +119,7 @@ body.light-theme {
 .my-library-hero__buttons {
     display: flex;
     gap: 8px;
-    margin-top: 0;
+    margin-top: 12px;
 }
 
 .my-library-hero__btn {
@@ -306,8 +306,7 @@ body.light-theme .my-library-error {
     }
 
     .my-library-hero__description {
-        width: 254px;
-        height: 49px;
+        max-width: 254px;
         font-size: 14px;
         margin-bottom: 77px;
     }
