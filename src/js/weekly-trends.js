@@ -2,16 +2,31 @@ import { getWeeklyTrending } from './api/movies-api.js';
 
 const movieGrid = document.getElementById('movie-grid');
 
+let cachedMovies = [];
+
+function getVisibleCount() {
+  // Mobil: 1, Tablet+Desktop: 3
+  return window.matchMedia('(min-width: 768px)').matches ? 3 : 1;
+}
+
+function renderMovies() {
+  if (!movieGrid) return;
+  const count = getVisibleCount();
+  displayMovies(cachedMovies.slice(0, count));
+}
+
 export async function initWeeklyTrends() {
   if (!movieGrid) return;
 
   try {
     // API'den trend filmleri çekiyoruz
-    const movies = await getWeeklyTrending();
+    cachedMovies = await getWeeklyTrending();
 
-    if (movies && movies.length > 0) {
-      // İlk 3 filmi gösteriyoruz
-      displayMovies(movies.slice(0, 3));
+    if (cachedMovies && cachedMovies.length > 0) {
+      renderMovies();
+
+      // Ekran boyutu değişirse (resize/orientation change) yeniden çiz
+      window.addEventListener('resize', renderMovies);
     }
   } catch (error) {
     console.error('Trend verileri yüklenirken hata oluştu:', error);

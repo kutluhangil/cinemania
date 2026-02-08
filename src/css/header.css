@@ -34,6 +34,16 @@ body.light-theme .header {
   background-color: #fff;
 }
 
+/* Weekly Trends Bölümü için Light Modu */
+body.light-theme .weekly-trends {
+  background-color: #fff;
+  color: #111;
+}
+
+body.light-theme .weekly-trends__title {
+  color: #111;
+}
+
 body.light-theme .search-input {
   border-color: #595959;
   color: #111;

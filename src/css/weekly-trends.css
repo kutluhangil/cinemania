@@ -1,12 +1,12 @@
 .weekly-trends {
-  background-color: #000;
+  background-color: #111;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   padding: 20px 0;
 }
 
 .weekly-trends__container {
-  max-width: 1200px;
+  max-width: 320px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -19,17 +19,15 @@
 }
 
 .weekly-trends__title {
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  margin: 0;
-  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .weekly-trends__see-all {
-  color: #ff6b00;
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
+  color: #f87719;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .weekly-trends__grid {
@@ -39,12 +37,40 @@
 }
 
 @media (min-width: 768px) {
+  .weekly-trends__container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .weekly-trends__title {
+    font-size: 24px;
+  }
+
+  .weekly-trends__see-all {
+    font-size: 24px;
+  }
+
   .weekly-trends__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
+  .weekly-trends__container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .weekly-trends__title {
+    font-size: 28px;
+  }
+
+  .weekly-trends__see-all {
+    font-size: 28px;
+  }
+
   .weekly-trends__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -60,7 +86,7 @@
 .weekly-trends__card img {
   width: 100%;
   display: block;
-  aspect-ratio: 2/3;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
 }
 
@@ -72,15 +98,14 @@
   width: 100%;
   padding: 20px 12px 12px 12px;
   display: flex;
-  justify-content: space-between; /* Metin sol, yıldız sağ */
+  justify-content: space-between;
+  /* Metin sol, yıldız sağ */
   align-items: flex-end;
   box-sizing: border-box;
   /* Alttan yukarıya doğru karartma efekti */
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0) 100%);
 }
 
 .weekly-trends__movie-title {
@@ -101,5 +126,6 @@
   font-size: 12px;
   line-height: 1;
   letter-spacing: 1px;
-  margin-bottom: 2px; /* Metinle hizalamak için */
+  margin-bottom: 2px;
+  /* Metinle hizalamak için */
 }
