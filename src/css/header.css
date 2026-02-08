@@ -30,6 +30,10 @@ body.light-theme {
   color: #111111;
 }
 
+body.light-theme .header {
+  background-color: #fff;
+}
+
 body.light-theme .search-input {
   border-color: #595959;
   color: #111;
@@ -86,7 +90,7 @@ body.light-theme .year-dropdown li:hover {
   position: relative;
   width: 100%;
   z-index: 100;
-  background-color: var(--panel-bg);
+  background-color: #000;
 }
 
 .header-container {
