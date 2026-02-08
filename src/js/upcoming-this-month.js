@@ -164,6 +164,7 @@ function toggleLibrary(movie) {
 
 /* ===== MODAL MANTIĞI ===== */
 function openModal(movie) {
+  if (!modalBackdrop || !modalContent) return;
   const genreNames = movie.genre_ids.map(id => genresMap[id]).join(', ');
   const isSaved = isInLibrary(movie.id);
 
@@ -205,18 +206,25 @@ function openModal(movie) {
 
 // Modalı Kapatma İşlemleri
 function closeModal() {
+  if (!modalBackdrop) return;
   modalBackdrop.classList.remove('is-open');
   document.body.style.overflow = '';
 }
 
-modalCloseBtn.addEventListener('click', closeModal);
-modalBackdrop.addEventListener('click', (e) => {
-  if (e.target === modalBackdrop) closeModal();
-});
+if (modalCloseBtn && modalBackdrop) {
+  modalCloseBtn.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) closeModal();
+  });
+}
 
 // ESC tuşu ile kapatma
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modalBackdrop.classList.contains('is-open')) {
+  if (
+    e.key === 'Escape' &&
+    modalBackdrop &&
+    modalBackdrop.classList.contains('is-open')
+  ) {
     closeModal();
   }
 });
