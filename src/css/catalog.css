@@ -277,6 +277,10 @@
     width: 100%;
 }
 
+body.light-theme #emptyMessage {
+    color: #111;
+}
+
 .emptyHidden {
     width: 280px;
     margin: 0 auto;
