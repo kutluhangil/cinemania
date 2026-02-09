@@ -126,26 +126,67 @@ src/
 
 <hr />
 
-<h2 id="team-members">👥 Team Members & Responsibilities</h2>
+<h2 id="team-members">👥 Geliştirici Ekip</h2>
+
 <ul>
-  <li><strong>Çiğdem Ergal</strong> — Team Lead — Header & Leadership —
-    <a href="https://github.com/CigdemErgal" target="_blank">GitHub</a> |
-    <a href="https://www.linkedin.com/in/%C3%A7i%C4%9Fdem-ergal/" target="_blank">LinkedIn</a>
+  <li>
+    <strong>Çiğdem Ergal</strong> — Team Lead<br />
+    <a href="https://github.com/CigdemErgal" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/%C3%A7i%C4%9Fdem-ergal/" target="_blank" rel="noopener">LinkedIn</a>
   </li>
-  <li><strong>Halenur Gürel</strong> — Scrum Master — Hero & Scrum —
-    <a href="https://github.com/halenurgurel" target="_blank">GitHub</a> |
-    <a href="https://www.linkedin.com/in/halenurgurel/" target="_blank">LinkedIn</a>
+
+  <li>
+    <strong>Halenur Gürel</strong> — Scrum Master<br />
+    <a href="https://github.com/halenurgurel" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/halenurgurel/" target="_blank" rel="noopener">LinkedIn</a>
   </li>
-  <li><strong>Aslıhan Erdal</strong> — Upcoming This Month</li>
-  <li><strong>Burak Gökay</strong> — Weekly Trends</li>
-  <li><strong>Kerem Yıldırım</strong> — Catalog</li>
-  <li><strong>Yusuf Soylu</strong> — Pagination</li>
-  <li><strong>Nur Seda Ağgünlü</strong> — My Library</li>
-  <li><strong>Ali Hamza Çakmak</strong> — Modals</li>
-  <li><strong>Zehra Yazıcı</strong> — My Library Hero</li>
-  <li><strong>Kutluhan Gül</strong> — Footer & Team Modal —
-    <a href="https://github.com/kutluhangil" target="_blank">GitHub</a> |
-    <a href="https://www.linkedin.com/in/kutluhangil/" target="_blank">LinkedIn</a>
+
+  <li>
+    <strong>Ali Hamza Çakmak</strong> — Developer<br />
+    <a href="https://github.com/MRMARUL" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/ali-hamza-%C3%A7akmak-8112553a8/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Aslıhan Erdal</strong> — Developer<br />
+    <a href="https://github.com/ERDLL0" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/aslihan-erdal/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Burak Gökay</strong> — Developer<br />
+    <a href="https://github.com/bgokay007-tech" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/burak-g%C3%B6kay-196b66348/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Kerem Yıldırım</strong> — Developer<br />
+    <a href="https://github.com/keremyldrm61" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/kerem-y%C4%B1ld%C4%B1r%C4%B1m-0053a5191/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Nur Seda Ağgünlü</strong> — Developer<br />
+    <a href="https://github.com/nursedaaggunlu" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/nur-seda-aggunlu/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Yusuf Soylu</strong> — Developer<br />
+    <a href="https://github.com/soylu1092" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/yusuf-soylu-525236306/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Zehra Yazıcı</strong> — Developer<br />
+    <a href="https://github.com/zehrayazici" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/zehrayazici/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+
+  <li>
+    <strong>Kutluhan Gül</strong> — Developer (Footer & Team Modal)<br />
+    <a href="https://github.com/kutluhangil" target="_blank" rel="noopener">GitHub</a> |
+    <a href="https://www.linkedin.com/in/kutluhangil/" target="_blank" rel="noopener">LinkedIn</a>
   </li>
 </ul>
 
