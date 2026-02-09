@@ -126,67 +126,117 @@ src/
 
 <hr />
 
-<h2 id="team-members">👥 Geliştirici Ekip</h2>
+<h2 id="team-members">👥 Geliştirici Ekip & Sorumluluklar</h2>
 
 <ul>
   <li>
     <strong>Çiğdem Ergal</strong> — Team Lead<br />
-    <a href="https://github.com/CigdemErgal" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/%C3%A7i%C4%9Fdem-ergal/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Header & Liderlik<br />
+    <a href="https://github.com/CigdemErgal" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/%C3%A7i%C4%9Fdem-ergal/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Halenur Gürel</strong> — Scrum Master<br />
-    <a href="https://github.com/halenurgurel" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/halenurgurel/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Hero & Scrum Yönetimi<br />
+    <a href="https://github.com/halenurgurel" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/halenurgurel/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Ali Hamza Çakmak</strong> — Developer<br />
-    <a href="https://github.com/MRMARUL" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/ali-hamza-%C3%A7akmak-8112553a8/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Modals (Detail & Trailer)<br />
+    <a href="https://github.com/MRMARUL" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/ali-hamza-%C3%A7akmak-8112553a8/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Aslıhan Erdal</strong> — Developer<br />
-    <a href="https://github.com/ERDLL0" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/aslihan-erdal/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Upcoming This Month<br />
+    <a href="https://github.com/ERDLL0" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/aslihan-erdal/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Burak Gökay</strong> — Developer<br />
-    <a href="https://github.com/bgokay007-tech" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/burak-g%C3%B6kay-196b66348/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Weekly Trends<br />
+    <a href="https://github.com/bgokay007-tech" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/burak-g%C3%B6kay-196b66348/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Kerem Yıldırım</strong> — Developer<br />
-    <a href="https://github.com/keremyldrm61" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/kerem-y%C4%B1ld%C4%B1r%C4%B1m-0053a5191/" target="_blank" rel="noopener">LinkedIn</a>
-  </li>
-
-  <li>
-    <strong>Nur Seda Ağgünlü</strong> — Developer<br />
-    <a href="https://github.com/nursedaaggunlu" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/nur-seda-aggunlu/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Catalog<br />
+    <a href="https://github.com/keremyldrm61" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/kerem-y%C4%B1ld%C4%B1r%C4%B1m-0053a5191/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Yusuf Soylu</strong> — Developer<br />
-    <a href="https://github.com/soylu1092" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/yusuf-soylu-525236306/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> Pagination<br />
+    <a href="https://github.com/soylu1092" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/yusuf-soylu-525236306/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
+  </li>
+
+  <li>
+    <strong>Nur Seda Ağgünlü</strong> — Developer<br />
+    <em>Sorumluluk:</em> My Library<br />
+    <a href="https://github.com/nursedaaggunlu" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/nur-seda-aggunlu/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
     <strong>Zehra Yazıcı</strong> — Developer<br />
-    <a href="https://github.com/zehrayazici" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/zehrayazici/" target="_blank" rel="noopener">LinkedIn</a>
+    <em>Sorumluluk:</em> My Library Hero<br />
+    <a href="https://github.com/zehrayazici" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/zehrayazici/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 
   <li>
-    <strong>Kutluhan Gül</strong> — Developer (Footer & Team Modal)<br />
-    <a href="https://github.com/kutluhangil" target="_blank" rel="noopener">GitHub</a> |
-    <a href="https://www.linkedin.com/in/kutluhangil/" target="_blank" rel="noopener">LinkedIn</a>
+    <strong>Kutluhan Gül</strong> — Developer<br />
+    <em>Sorumluluk:</em> Footer & Team Modal<br />
+    <a href="https://github.com/kutluhangil" target="_blank">
+      <img src="src/images/readme/github-icon.svg" alt="GitHub" width="18" />
+    </a>
+    <a href="https://www.linkedin.com/in/kutluhangil/" target="_blank">
+      <img src="src/images/readme/linkedin-icon.svg" alt="LinkedIn" width="18" />
+    </a>
   </li>
 </ul>
 
