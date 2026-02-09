@@ -68,6 +68,7 @@ body {
   width: 16px;
   height: 16px;
   display: inline-block;
+  position: relative;
   background: url('/assets/star-icon.svg') no-repeat center / contain;
 }
 
@@ -77,6 +78,14 @@ body {
 
 .star-empty {
   background: url('/assets/star-icon.svg') no-repeat center / contain;
+}
+
+.star-half::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/star-icon-filled.svg') no-repeat center / contain;
+  clip-path: inset(0 50% 0 0);
 }
 
 #hero-description {

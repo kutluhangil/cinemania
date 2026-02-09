@@ -75,7 +75,27 @@ function initMobileMenu() {
   });
 }
 
+function initActiveNav() {
+  const path = window.location.pathname;
+  const current = path.split('/').pop() || 'index.html';
+
+  const links = document.querySelectorAll(
+    '.header-nav-link, .mobile-menu-link'
+  );
+  if (!links.length) return;
+
+  links.forEach(link => link.classList.remove('active'));
+
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const hrefFile = href.split('/').pop();
+    if (hrefFile === current) link.classList.add('active');
+  });
+}
+
 export function initHeader() {
   initThemeToggle();
   initMobileMenu();
+  initActiveNav();
 }

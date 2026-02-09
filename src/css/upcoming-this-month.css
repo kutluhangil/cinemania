@@ -236,7 +236,7 @@
 
 /* ================= MODAL STYLES ================= */
 
-.backdrop {
+.upcoming-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -256,13 +256,13 @@
   z-index: 1000;
 }
 
-.backdrop.is-open {
+.upcoming-backdrop.is-open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-.modal {
+.upcoming-modal {
   background: white;
   width: 90%;
   max-width: 800px;
@@ -275,18 +275,18 @@
   overflow-y: auto;
 }
 
-.backdrop.is-open .modal {
+.upcoming-backdrop.is-open .upcoming-modal {
   transform: translateY(0);
 }
 
-.modal-content {
+.upcoming-modal-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 @media (min-width: 768px) {
-  .modal-content {
+  .upcoming-modal-content {
     flex-direction: row;
   }
 }
@@ -353,7 +353,7 @@ body.light-theme .upcoming-overview {
   color: #282828;
 }
 
-body.dark-theme .modal {
+body.dark-theme .upcoming-modal {
   background: #111;
   color: #fff;
 }

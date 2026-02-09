@@ -362,7 +362,24 @@ document.addEventListener('click', e => {
 ====================================================== */
 
 function openMovieModal(movie) {
-  console.log('TIKLANAN FILM:', movie);
+  openPopupSafe(movie?.id);
+}
+
+// ======================
+// POPUP HOOK (safe)
+// ======================
+function openPopupSafe(movieId) {
+  if (!movieId) return false;
+
+  if (typeof window.openMoviePopup === 'function') {
+    window.openMoviePopup(movieId);
+    return true;
+  }
+
+  console.warn(
+    'openMoviePopup bulunamadı. Popup modülü sayfaya yüklenmemiş olabilir.'
+  );
+  return false;
 }
 
 if (listEl) {

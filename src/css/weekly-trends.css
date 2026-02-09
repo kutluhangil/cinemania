@@ -79,6 +79,7 @@
   border-radius: 14px;
   overflow: hidden;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .weekly-trends__card img {
@@ -121,9 +122,32 @@
 
 .weekly-trends__stars {
   color: #f87719;
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 1px;
+  display: inline-flex;
+  gap: 2px;
   margin-bottom: 2px;
   /* Metinle hizalamak için */
+}
+
+.weekly-trends__stars .star-item {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  position: relative;
+  background: url('/assets/star-icon.svg') no-repeat center / contain;
+}
+
+.weekly-trends__stars .star-filled {
+  background: url('/assets/star-icon-filled.svg') no-repeat center / contain;
+}
+
+.weekly-trends__stars .star-empty {
+  background: url('/assets/star-icon.svg') no-repeat center / contain;
+}
+
+.weekly-trends__stars .star-half::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/star-icon-filled.svg') no-repeat center / contain;
+  clip-path: inset(0 50% 0 0);
 }

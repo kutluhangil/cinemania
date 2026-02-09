@@ -60,16 +60,34 @@ function displayMovie(movie) {
   }
 
   if (ratingContainer) {
-    const starsCount = Math.round(movie.vote_average / 2);
-    let starsHTML = '';
-
-    for (let i = 1; i <= 5; i++) {
-      const starClass = i <= starsCount ? 'star-filled' : 'star-empty';
-      // star-icon.svg dosyanın yolunu buraya yaz
-      starsHTML += `<span class="star-item ${starClass}"></span>`;
-    }
-    ratingContainer.innerHTML = starsHTML;
+    ratingContainer.innerHTML = renderHeroStars(movie.vote_average);
   }
+}
+
+function renderHeroStars(rating) {
+  const value = Number(rating);
+  if (!Number.isFinite(value)) return '';
+
+  const starCount = value / 2;
+  const fullStars = Math.floor(starCount);
+  const hasHalfStar = starCount % 1 >= 0.3;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  let starsHTML = '';
+
+  for (let i = 0; i < fullStars; i++) {
+    starsHTML += '<span class="star-item star-filled"></span>';
+  }
+
+  if (hasHalfStar) {
+    starsHTML += '<span class="star-item star-half"></span>';
+  }
+
+  for (let i = 0; i < emptyStars; i++) {
+    starsHTML += '<span class="star-item star-empty"></span>';
+  }
+
+  return starsHTML;
 }
 
 async function getTrailer(movieId) {

@@ -21,6 +21,7 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  color: #595959;
 }
 
 .page-btn.prev:hover,
@@ -38,7 +39,22 @@
 .pagination-icon {
   width: 7.88px;
   height: 15.75px;
-  fill: #111827;
+  color: #595959;
+  display: block;
+}
+
+body.dark-theme .pagination-icon {
+  color: #f8f8f8;
+}
+
+body.dark-theme .page-btn.prev,
+body.dark-theme .page-btn.next {
+  color: #f8f8f8;
+}
+
+.pagination-icon use {
+  stroke: currentColor;
+  fill: none;
 }
 
 .page-numbers {
@@ -100,6 +116,11 @@
     padding: 0;
     display: grid;
     place-items: center;
+  }
+
+  .pagination-arrow {
+    width: 16px;
+    height: 16px;
   }
 
   .page-number {

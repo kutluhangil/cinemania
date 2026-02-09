@@ -1,4 +1,5 @@
 import { API_KEY, BASE_URL, IMAGE_BASE } from './api/movies-api.js';
+import { initPagination } from './pagination.js';
 
 export function initCatalog() {
   // ======================
@@ -17,8 +18,16 @@ export function initCatalog() {
   // ======================
   const moviesContainer = document.getElementById('moviesContainer');
   const emptyMessage = document.getElementById('emptyMessage');
+  const paginationRoot = document.querySelector('.pagination');
 
   if (!moviesContainer || !emptyMessage) return;
+
+  const pagination = paginationRoot
+    ? initPagination('.pagination', page => {
+        if (currentMode === 'search') searchMovies(page);
+        else fetchTrending(page);
+      })
+    : null;
 
   const filmInput = document.querySelector('.search-input'); // ilk .search-input (Film inputu)
   const clearBtn = document.getElementById('clearSearch'); // HTML'de yok → aşağıda fallback var
@@ -62,9 +71,14 @@ export function initCatalog() {
   // PAGINATION (ŞİMDİLİK NO-OP)
   // Not: setupPagination yorumdaydı ama çağrılıyordu, hata vermesin diye burada boş bırakıldı.
   // ======================
-  function setupPagination(totalResults, page) {
-    // İstersen sonra Pagination entegrasyonunu burada açarız.
-    // Şimdilik hiçbir şey yapma.
+  function setupPagination(totalPages, page) {
+    if (!pagination) return;
+    const pages = Math.min(500, Number(totalPages) || 0);
+    if (pages <= 1) {
+      pagination.reset();
+      return;
+    }
+    pagination.set(pages, page);
   }
 
   // ======================
@@ -220,8 +234,14 @@ export function initCatalog() {
     fetch(url)
       .then(r => r.json())
       .then(d => {
+        const maxPages = Math.min(500, Number(d.total_pages) || 0);
+        if (maxPages && page > maxPages) {
+          searchMovies(maxPages);
+          return;
+        }
+
         renderMovies(d.results || []);
-        setupPagination(d.total_results || 0, page);
+        setupPagination(d.total_pages || 0, page);
       })
       .catch(err => console.error('searchMovies error:', err));
   }
@@ -239,8 +259,14 @@ export function initCatalog() {
     fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`)
       .then(r => r.json())
       .then(d => {
+        const maxPages = Math.min(500, Number(d.total_pages) || 0);
+        if (maxPages && page > maxPages) {
+          fetchTrending(maxPages);
+          return;
+        }
+
         renderMovies(d.results || []);
-        setupPagination(d.total_results || 0, page);
+        setupPagination(d.total_pages || 0, page);
       })
       .catch(err => console.error('fetchTrending error:', err));
   }
@@ -253,6 +279,7 @@ export function initCatalog() {
 
     if (!movies.length) {
       emptyMessage.style.display = hasSearched ? 'block' : 'none';
+      if (pagination) pagination.reset();
       return;
     }
 

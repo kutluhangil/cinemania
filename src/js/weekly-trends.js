@@ -42,8 +42,10 @@ function displayMovies(movies) {
         : '2023';
 
       // Önemli: CSS'deki .weekly-trends__info yapısına uygun HTML
+      const stars = renderStars(movie.vote_average);
+
       return `
-        <div class="weekly-trends__item">
+        <div class="weekly-trends__item" data-movie-id="${movie.id}">
             <div class="weekly-trends__card">
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy">
                 
@@ -52,7 +54,7 @@ function displayMovies(movies) {
                         <div class="weekly-trends__movie-title">${movie.title}</div>
                         <div class="weekly-trends__movie-meta">Drama, Action | ${releaseYear}</div>
                     </div>
-                    <div class="weekly-trends__stars" aria-label="Rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="weekly-trends__stars" aria-label="Rating ${movie.vote_average?.toFixed ? movie.vote_average.toFixed(1) : 'N/A'}">${stars}</div>
                 </div>
             </div>
         </div>
@@ -61,5 +63,55 @@ function displayMovies(movies) {
     .join('');
 }
 
+function renderStars(rating) {
+  const value = Number(rating);
+  if (!Number.isFinite(value)) return '';
+
+  const starCount = value / 2;
+  const fullStars = Math.floor(starCount);
+  const hasHalfStar = starCount % 1 >= 0.3;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  let starsHTML = '';
+
+  for (let i = 0; i < fullStars; i++) {
+    starsHTML += '<span class="star-item star-filled"></span>';
+  }
+
+  if (hasHalfStar) {
+    starsHTML += '<span class="star-item star-half"></span>';
+  }
+
+  for (let i = 0; i < emptyStars; i++) {
+    starsHTML += '<span class="star-item star-empty"></span>';
+  }
+
+  return starsHTML;
+}
+
 // Sayfa yüklendiğinde fonksiyonu çalıştır
 initWeeklyTrends();
+
+if (movieGrid) {
+  movieGrid.addEventListener('click', e => {
+    const card = e.target.closest('.weekly-trends__item');
+    if (!card) return;
+
+    const movieId = card.dataset.movieId;
+    openPopupSafe(movieId);
+  });
+}
+
+function openPopupSafe(movieId) {
+  if (!movieId) return false;
+
+  if (typeof window.openMoviePopup === 'function') {
+    window.openMoviePopup(movieId);
+    return true;
+  }
+
+  console.warn(
+    'openMoviePopup bulunamadı. Popup modülü sayfaya yüklenmemiş olabilir.'
+  );
+  return false;
+}

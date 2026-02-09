@@ -1,13 +1,11 @@
 const API_KEY = 'c43a3c633ad33367e1cd1eb02f47a173'; // Senin API keyin
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
-const LIB_KEY = 'myLibrary';
+const LIB_KEY = 'my-library';
+const LEGACY_LIB_KEY = 'myLibrary';
 
 // DOM Elementleri
 const wrapper = document.getElementById('upcoming-wrapper');
-const modalBackdrop = document.getElementById('modalBackdrop');
-const modalContent = document.getElementById('modalContent');
-const modalCloseBtn = document.getElementById('modalClose');
 
 // Global Değişkenler
 let genresMap = {}; // ID -> İsim eşleşmesi için
@@ -118,8 +116,12 @@ function renderMovie(movie) {
   wrapper.innerHTML = html;
 
   // Event Listeners (Tıklama olayları)
-  document.getElementById('posterClick').addEventListener('click', () => openModal(movie));
-  document.getElementById('titleClick').addEventListener('click', () => openModal(movie));
+  document.getElementById('posterClick').addEventListener('click', () => {
+    openPopupSafe(movie.id);
+  });
+  document.getElementById('titleClick').addEventListener('click', () => {
+    openPopupSafe(movie.id);
+  });
   
   const btn = document.getElementById('libraryBtn');
   btn.addEventListener('click', () => {
@@ -145,7 +147,16 @@ function updateButtonState(btn, isSaved) {
 
 /* ===== KÜTÜPHANE MANTIĞI (Local Storage) ===== */
 function getLibrary() {
-  return JSON.parse(localStorage.getItem(LIB_KEY)) || [];
+  const current = JSON.parse(localStorage.getItem(LIB_KEY)) || [];
+  if (current.length > 0) return current;
+
+  // Migrate legacy storage if present
+  const legacy = JSON.parse(localStorage.getItem(LEGACY_LIB_KEY)) || [];
+  if (legacy.length > 0) {
+    localStorage.setItem(LIB_KEY, JSON.stringify(legacy));
+    localStorage.removeItem(LEGACY_LIB_KEY);
+  }
+  return legacy;
 }
 
 function isInLibrary(id) {
@@ -162,69 +173,16 @@ function toggleLibrary(movie) {
   localStorage.setItem(LIB_KEY, JSON.stringify(lib));
 }
 
-/* ===== MODAL MANTIĞI ===== */
-function openModal(movie) {
-  if (!modalBackdrop || !modalContent) return;
-  const genreNames = movie.genre_ids.map(id => genresMap[id]).join(', ');
-  const isSaved = isInLibrary(movie.id);
+function openPopupSafe(movieId) {
+  if (!movieId) return false;
 
-  // Modal İçeriği (Figma'daki Pop Up Tasarımı)
-  modalContent.innerHTML = `
-    <img src="${IMG_URL}${movie.poster_path}" class="modal-poster" alt="${movie.title}">
-    <div class="modal-info">
-      <h3 style="font-size:24px; text-transform:uppercase; margin-bottom:10px;">${movie.title}</h3>
-      
-      <div style="display:grid; grid-template-columns: auto 1fr; gap: 5px 20px; margin-bottom:15px; font-size:14px;">
-        <span>Vote / Votes</span> <span>${movie.vote_average.toFixed(1)} / ${movie.vote_count}</span>
-        <span>Popularity</span> <span>${movie.popularity.toFixed(1)}</span>
-        <span>Genre</span> <span>${genreNames}</span>
-      </div>
-
-      <h5 style="margin-bottom:5px;">ABOUT</h5>
-      <p style="font-size:14px; line-height:1.5; color:#555; margin-bottom:20px;">${movie.overview}</p>
-
-      <button class="btn-library ${isSaved ? 'remove' : 'add'}" id="modalLibBtn">
-        ${isSaved ? 'Remove from my library' : 'Add to my library'}
-      </button>
-    </div>
-  `;
-
-  // Modal butonuna da event ekle
-  const modalBtn = document.getElementById('modalLibBtn');
-  modalBtn.addEventListener('click', () => {
-    toggleLibrary(movie);
-    updateButtonState(modalBtn, isInLibrary(movie.id));
-    
-    // Ana ekrandaki butonu da senkronize et (varsa)
-    const mainBtn = document.getElementById('libraryBtn');
-    if(mainBtn) updateButtonState(mainBtn, isInLibrary(movie.id));
-  });
-
-  modalBackdrop.classList.add('is-open');
-  document.body.style.overflow = 'hidden'; // Arka plan scroll olmasın
-}
-
-// Modalı Kapatma İşlemleri
-function closeModal() {
-  if (!modalBackdrop) return;
-  modalBackdrop.classList.remove('is-open');
-  document.body.style.overflow = '';
-}
-
-if (modalCloseBtn && modalBackdrop) {
-  modalCloseBtn.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', (e) => {
-    if (e.target === modalBackdrop) closeModal();
-  });
-}
-
-// ESC tuşu ile kapatma
-document.addEventListener('keydown', (e) => {
-  if (
-    e.key === 'Escape' &&
-    modalBackdrop &&
-    modalBackdrop.classList.contains('is-open')
-  ) {
-    closeModal();
+  if (typeof window.openMoviePopup === 'function') {
+    window.openMoviePopup(movieId);
+    return true;
   }
-});
+
+  console.warn(
+    'openMoviePopup bulunamadı. Popup modülü sayfaya yüklenmemiş olabilir.'
+  );
+  return false;
+}
