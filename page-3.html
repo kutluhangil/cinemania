@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinemania - My Library</title>
+    <script type="module" crossorigin src="/cinemania/assets/main-CCapyCKH.js"></script>
+    <link rel="stylesheet" crossorigin href="/cinemania/assets/main-DZayRIkA.css">
+  </head>
+  <body class="dark-theme">
+    <header class="header">
+  <div class="container header-container">
+    <!-- LEFT -->
+    <div class="header-left">
+      <!-- Mobile: burger button (popcorn icon) -->
+      <button class="burger-btn" type="button" aria-label="Open menu">
+        <img class="header-popcorn-icon" src="/cinemania/assets/popcorn.svg" alt="" />
+      </button>
+
+      <!-- Tablet/Desktop: logo link (popcorn + text) -->
+      <a class="header-logo-link" href="./index.html" aria-label="Cinemania home">
+        <img class="header-popcorn-icon" src="/cinemania/assets/popcorn.svg" alt="" />
+        <span class="header-logo-text">Cinemania</span>
+      </a>
+    </div>
+
+    <!-- CENTER -->
+    <div class="header-center">
+      <!-- Mobile title -->
+      <p class="header-mobile-title">MENU</p>
+
+      <!-- Tablet/Desktop navigation -->
+      <nav class="header-nav" aria-label="Main navigation">
+        <ul class="header-nav-list">
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="./index.html">HOME</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="./page-2.html">CATALOG</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link " href="./page-3.html">MY LIBRARY</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+   <!-- RIGHT -->
+<div class="header-right">
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <span class="theme-toggle-track" aria-hidden="true">
+      <!-- sol ikon -->
+      <img class="theme-toggle-icon moon" src="/cinemania/assets/moon.svg" alt="" />
+
+      <!-- kayan nokta -->
+      <span class="theme-toggle-dot"></span>
+        
+
+      <!-- sağ ikon -->
+      <img class="theme-toggle-icon sun" src="/cinemania/assets/sun.svg" alt="" />
+    </span>
+  </button>
+</div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-menu is-hidden" data-menu>
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <ul class="mobile-menu-list">
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="./index.html">HOME</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="./page-2.html">CATALOG</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="./page-3.html">MY LIBRARY</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+    <main>
+      <link rel="stylesheet" href="../css/my-library-hero.css">
+<section class="my-library-hero">
+    <div class="my-library-hero__loader is-hidden"></div>
+    <div class="my-library-hero__overlay">
+        <h1 class="my-library-hero__title">Create Your Dream Cinema</h1>
+
+        <p class="my-library-hero__description">
+            Is a guide to designing a personalized movie theater experience with the
+            right equipment, customized decor, and favorite films. This guide helps
+            you bring the cinema experience into your own home with cozy seating, dim
+            lighting, and movie theater snacks.
+        </p>
+    </div>
+</section>
+
+<div id="my-library-error-popup">
+    <div class="my-library-error">
+        <button class="my-library-error__close">&times;</button>
+        <div class="my-library-error__text">
+            <h2 class="my-library-error__title">OOPS...</h2>
+            <p class="my-library-error__message">We are very sorry!<br>But we couldn't find the trailer.</p>
+        </div>
+        <div class="my-library-error__image">
+            <img src="../img/l.h.i.error-icon.png.png" alt="Error Icon" />
+        </div>
+    </div>
+</div>
+
+<div id="my-library-video-modal" class="modal-hidden">
+    <div class="video-content">
+        <span class="close-my-library-video">&times;</span>
+        <div class="iframe-container">
+            <iframe id="my-library-trailer-video" width="100%" height="100%" src="" frameborder="0"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+      <section class="library-section">
+  <div class="library-controls">
+    <div class="genre-select">
+      <button class="genre-btn" id="genreBtn" type="button">
+        <span id="genreText">Genre</span>
+        <svg class="arrow" width="16" height="16" aria-hidden="true">
+          <use href="/cinemania/icons.svg#icon-chevron-down"></use>
+        </svg>
+      </button>
+
+      <ul class="genre-menu" id="genreMenu"></ul>
+    </div>
+  </div>
+
+  <div class="library-loader hidden">
+    <span>Loading movies...</span>
+  </div>
+
+  <div class="library-error hidden">
+    <p>Movies could not be loaded. Please try again.</p>
+  </div>
+
+  <ul class="library-list"></ul>
+
+  <button class="load-more-btn hidden">Load More</button>
+
+  <div class="library-empty hidden">
+    <p>
+      OOPS... <br />We are very sorry!<br />You don’t have any movies at your
+      library.
+    </p>
+
+    <button class="library-search-btn">Search movie</button>
+  </div>
+</section>
+
+      <div class="popup-modal-overlay">
+  <div class="popup-movie-modal">
+    <div class="popup-loader is-hidden"></div>
+    <button class="popup-modal-close" aria-label="Close modal">✕</button>
+
+    <div class="popup-movie-poster">
+      <img alt="poster" />
+    </div>
+
+    <div class="popup-movie-content">
+      <h2 class="popup-movie-title"></h2>
+
+      <ul class="popup-movie-info">
+        <li>
+          <span class="popup-label">Vote / Votes</span>
+          <span class="popup-value"></span>
+        </li>
+        <li>
+          <span class="popup-label">Popularity</span>
+          <span class="popup-value"></span>
+        </li>
+        <li>
+          <span class="popup-label">Genre</span>
+          <span class="popup-value"></span>
+        </li>
+      </ul>
+
+      <h3 class="popup-about-title">ABOUT</h3>
+      <p class="popup-movie-description"></p>
+      <button class="popup-add-library-btn"></button>
+    </div>
+  </div>
+</div>
+
+    </main>
+
+    <footer class="footer">
+  <div class="footer-container">
+    <p class="footer-desc">
+      <span class="footer-text-line">&copy; 2023 | All Rights Reserved |</span>
+      <span class="footer-text-line">Developed with <span class="heart">♥</span> by <a href="#" class="footer-link"
+          id="footer-link">GoIT Students</a></span>
+    </p>
+  </div>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- Developer Team Modal -->
+  <!-- Developer Team Modal -->
+  <div class="backdrop is-hidden" data-footer-modal>
+    <div class="modal">
+      <button type="button" class="modal-close-btn" data-footer-close>
+        <svg class="modal-close-icon" width="14" height="14" viewBox="0 0 14 14">
+          <path
+            d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" />
+        </svg>
+      </button>
+
+      <div class="modal-content">
+        <h2 class="modal-title">CINEMANIA PROJECT TEAM</h2>
+        <p class="modal-subtitle">The creative minds behind Cinemania</p>
+        <ul class="team-list"></ul>
+      </div>
+    </div>
+  </div>
+
+</footer>
+  </body>
+</html>
